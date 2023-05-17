@@ -1,0 +1,77 @@
+﻿<Window x:Class="WpfApp1.forms.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Menu" Height="985.091" Width="1522.835" WindowState="Maximized"
+        KeyDown="Menu_KeyDown"
+    >
+
+    <Grid Margin="0,491,2,0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Image Tag="1" Visibility="Collapsed" x:Name="Facturacion" Grid.Row="0" Grid.Column="0"  Source="/WpfApp1;component/image/factura2.png" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown" Margin="28,18,35,73" />
+        <Image Tag="2" Visibility="Collapsed" x:Name="Compras" Grid.Row="0" Grid.Column="1"  Source="/WpfApp1;component/image/compras.png" Margin="22,10,24,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="3" Visibility="Collapsed" x:Name="Inventario" Grid.Row="0" Grid.Column="2"  Source="/WpfApp1;component/image/inventariojg.jpg" Margin="27,10,19,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="4" Visibility="Collapsed" x:Name="Informes" Grid.Row="0" Grid.Column="3"  Source="/WpfApp1;component/image/informes.png" Margin="16,10,30,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="5" Visibility="Collapsed" x:Name="Clientes" Grid.Row="0" Grid.Column="4"  Source="/WpfApp1;component/image/clientes.png" Margin="21,10,25,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="6" Visibility="Collapsed" x:Name="Proveedores" Grid.Row="0" Grid.Column="5"  Source="/WpfApp1;component/image/provee.png" Margin="21,10,25,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="7" Visibility="Collapsed" x:Name="Usuarios" Grid.Row="0" Grid.Column="6"  Source="/WpfApp1;component/image/clave.png" Margin="21,10,26,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="8" Visibility="Collapsed" x:Name="CXC" Grid.Row="0" Grid.Column="7"  Source="/WpfApp1;component/image/cxc.png" Margin="21,10,25,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="9" Visibility="Collapsed" x:Name="CXP" Grid.Row="0" Grid.Column="8"  Source="/WpfApp1;component/image/cxp.png" Margin="17,10,30,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="10" Visibility="Collapsed" x:Name="Cotizacion" Grid.Row="0" Grid.Column="9"  Source="/WpfApp1;component/image/factura2.png" Margin="20,10,27,73" StretchDirection="DownOnly" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="11" Visibility="Collapsed" x:Name="TomaI" Grid.Row="1" Grid.Column="0"  Source="/WpfApp1;component/image/copia.png" StretchDirection="DownOnly" Margin="28,10,35,82" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="12" Visibility="Collapsed" x:Name="OrdenP" Grid.Row="1" Grid.Column="1"  Source="/WpfApp1;component/image/precuenta2.png" StretchDirection="DownOnly" Margin="36,10,27,82" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="13" Visibility="Collapsed" x:Name="CtrlD" Grid.Row="1" Grid.Column="2"  Source="/WpfApp1;component/image/domicilios2.png" StretchDirection="DownOnly" Margin="35,10,28,82" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="14" Visibility="Collapsed" x:Name="Caja" Grid.Row="1" Grid.Column="3"  Source="/WpfApp1;component/image/caja2.png" StretchDirection="DownOnly" Margin="33,10,30,82" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="15" Visibility="Collapsed" x:Name="SaldoCXC" Grid.Row="1" Grid.Column="4"  Source="/WpfApp1;component/image/saldocxc.png" StretchDirection="DownOnly" Margin="21,10,42,82" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="16" Visibility="Collapsed" x:Name="SaldoCXP" Grid.Row="1" Grid.Column="5"  Source="/WpfApp1;component/image/saldocxp.png" StretchDirection="DownOnly" Margin="21,10,42,82" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="17" Visibility="Collapsed" x:Name="Novedades" Grid.Row="1" Grid.Column="6"  Source="/WpfApp1;component/image/novedades.png" StretchDirection="DownOnly" Margin="21,10,43,81" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="18" Visibility="Collapsed" x:Name="Gastos" Grid.Row="1" Grid.Column="7"  Source="/WpfApp1;component/image/gastos.png" StretchDirection="DownOnly" Margin="19,11,45,80" MouseDown="Facturacion_MouseDown"/>
+        <Image Tag="19" Visibility="Visible" x:Name="Exit" Grid.Row="1" Grid.Column="8"  Source="/WpfApp1;component/image/salir.png" StretchDirection="DownOnly" Margin="34,10,30,82" MouseDown="Facturacion_MouseDown"/>
+
+        <Image Grid.ColumnSpan="7" Height="358" Margin="28,-459,127,0" VerticalAlignment="Top" Source="/WpfApp1;component/image/logo3.png" Stretch="Fill" OpacityMask="#FF737277"/>
+
+        <Label Visibility="Collapsed" x:Name="Facturacion_Label" Content="FACTURACIÓN" HorizontalAlignment="Center" Height="41" Margin="7,181,2,10" VerticalAlignment="Center" Width="142" FontSize="18" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Compras_Label" Visibility="Collapsed" Content="COMPRAS" HorizontalAlignment="Center" Height="41" Margin="22,181,15,10" VerticalAlignment="Center" Width="152" FontSize="18" FontFamily="Arial" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Inventario_Label" Visibility="Collapsed" Content="INVENTARIO" HorizontalAlignment="Center" Height="41" Margin="8,181,5,10" VerticalAlignment="Center" Width="138" FontSize="18" FontFamily="Arial" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Informes_Label" Visibility="Collapsed" Content="INFORMES" HorizontalAlignment="Center" Height="41" Margin="0,181,10,10" VerticalAlignment="Center" Width="142" FontSize="18" FontFamily="Arial" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Clientes_Label" Visibility="Collapsed" Content="CLIENTES" HorizontalAlignment="Center" Height="41" Margin="5,181,11,10" VerticalAlignment="Center" Width="136" FontSize="18" FontFamily="Arial" Grid.Column="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Proveedores_Label" Visibility="Collapsed" Content="PROVEEDOR" HorizontalAlignment="Center" Height="41" Margin="2,181,10,10" VerticalAlignment="Center" Width="139" FontSize="18" FontFamily="Arial" Grid.Column="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Usuarios_Label" Visibility="Collapsed" Content="USUARIOS" HorizontalAlignment="Center" Height="41" Margin="5,181,3,10" VerticalAlignment="Center" Width="144" FontSize="18" FontFamily="Arial" Grid.Column="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="CXC_Label" Visibility="Collapsed" Content="CXC" HorizontalAlignment="Center" Height="41" Margin="2,181,10,10" VerticalAlignment="Center" Width="139" FontSize="18" FontFamily="Arial" Grid.Column="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="CXP_Label" Visibility="Collapsed" Content="CXP" HorizontalAlignment="Center" Height="41" Margin="149,181,2,10" VerticalAlignment="Center" Width="152" FontSize="18" FontFamily="Arial" Grid.Column="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Cotizacion_Label" Visibility="Collapsed" Content="COTIZACIÓN" HorizontalAlignment="Center" Height="41" Margin="2,181,-3,10" VerticalAlignment="Center" Width="152" FontSize="18" FontFamily="Arial" Grid.Column="9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="TomaI_Label" Visibility="Collapsed" Content="TOMA&#xD;&#xA;INVENTARIO" HorizontalAlignment="Center" Height="54" Margin="7,154,2,23" VerticalAlignment="Center" Width="142" FontSize="18" FontFamily="Arial" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="OrdenP_Label" Visibility="Collapsed" Content="ORDEN&#xD;&#xA;PERDIDO" HorizontalAlignment="Center" Height="54" Margin="3,154,6,23" VerticalAlignment="Center" Width="142" FontSize="18" FontFamily="Arial" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="CtrlD_Label" Visibility="Collapsed" Content="CTRL&#xD;&#xA;DOMICILIO" HorizontalAlignment="Center" Height="54" Margin="150,154,8,23" VerticalAlignment="Center" Width="144" FontSize="18" FontFamily="Arial" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Caja_Label" Visibility="Collapsed" Content="CAJA" HorizontalAlignment="Center" Height="41" Margin="148,166,12,24" VerticalAlignment="Center" Width="142" FontSize="18" FontFamily="Arial" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="SaldoCXC_Label" Visibility="Collapsed" Content="SALDO&#xD;&#xA;CXC" HorizontalAlignment="Center" Height="53" Margin="145,154,11,24" VerticalAlignment="Center" Width="148" FontSize="18" FontFamily="Arial" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="SaldoCXP_Label" Visibility="Collapsed" Content="SALDO &#xD;&#xA;CXP" HorizontalAlignment="Center" Height="54" Margin="2,154,8,23" VerticalAlignment="Center" Width="141" FontSize="18" FontFamily="Arial" Grid.Column="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Novedades_Label" Visibility="Collapsed" Content="NOVEDADES" HorizontalAlignment="Center" Height="41" Margin="2,166,0,24" VerticalAlignment="Center" Width="149" FontSize="18" FontFamily="Arial" Grid.Column="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Gastos_Label" Visibility="Collapsed" Content="GASTOS" HorizontalAlignment="Center" Height="41" Margin="0,167,2,23" VerticalAlignment="Center" Width="149" FontSize="18" FontFamily="Arial" Grid.Column="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label x:Name="Exit_Label" Visibility="Visible" Content="SALIDA" HorizontalAlignment="Center" Height="41" Margin="0,154,0,36" VerticalAlignment="Center" Width="152" FontSize="18" FontFamily="Arial" Grid.Column="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Label HorizontalAlignment="Center" Content="Hora:" FontSize="35" Height="56" Margin="13,-431,43,607" VerticalAlignment="Center" Grid.Column="6" Width="96"/>
+        <TextBlock x:Name="txtReloj" FontSize="35" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="6" Margin="130,-422,0,607" Grid.ColumnSpan="3" Width="216"/>
+        <Label HorizontalAlignment="Center" Content="Usuario:" FontSize="35" Height="56" Margin="13,-502,3,678" VerticalAlignment="Center" Grid.Column="6" Width="136"/>
+        <Label x:Name="user_name" HorizontalAlignment="Left" Content="Usuario:" FontSize="35" Height="56" Margin="5,-502,141,678" VerticalAlignment="Center" Grid.Column="7" Width="308" Grid.ColumnSpan="3"/>
+
+    </Grid>
+
+</Window>

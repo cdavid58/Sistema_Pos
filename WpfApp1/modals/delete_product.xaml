@@ -1,0 +1,32 @@
+﻿<Window x:Class="WpfApp1.modals.delete_product"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.modals"
+        mc:Ignorable="d"
+        Title="delete_product" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="ModalTemplate" TargetType="ContentControl">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border Background="#80000000" Opacity="0.8" />
+                <ContentPresenter Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Button Content="Abrir Modal" Click="AbrirModal_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" />
+        <Popup x:Name="ModalPopup" IsOpen="False" AllowsTransparency="True" Placement="Center">
+            <ContentControl Template="{StaticResource ModalTemplate}">
+                <Grid Background="White" Width="400" Height="200">
+                    <TextBlock Text="Contenido del modal" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Button Content="Cerrar Modal" Click="CerrarModal_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,20,0,0" />
+                </Grid>
+            </ContentControl>
+        </Popup>
+    </Grid>
+</Window>
