@@ -4,13 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.forms.Modules"
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:local1="clr-namespace:WpfApp1.forms"
         mc:Ignorable="d"
-        Title="Facturacion" Height="450" Width="800" WindowState="Maximized">
+        Title="Facturacion" Height="450" Width="800" WindowState="Maximized"
+        Closing="Facturacion_Closing">
     <Grid>
-        <TabControl Name="tabControl" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="Nueva Pestaña">
-                <WebBrowser Name="webBrowser"/>
-            </TabItem>
-        </TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="+" FontSize="25" Click="AgregarPestaña_Click" Padding="-3,-9,-4,-5" Width="32" Margin="5,16,5,14" Background="Green"/>
+            <Button Content="X" Click="CerrarVentana_Click" Width="29" FontSize="25" Padding="-3,-9,-4,-5" Margin="5,16,5,14" Background="Red"/>
+        </StackPanel>
+        <TabControl x:Name="tabControl" SelectionChanged="TabControl_SelectionChanged" Margin="0,5,0,10" Grid.Row="1"/>
     </Grid>
 </Window>

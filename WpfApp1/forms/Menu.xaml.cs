@@ -16,6 +16,7 @@ namespace WpfApp1.forms
     public partial class Menu : Window
     {
         private Dictionary<string, int> permissions;
+        public static string chage_price = "";
 
         public Menu()
         {
@@ -44,12 +45,19 @@ namespace WpfApp1.forms
 
         private void Enabled_Modules()
         {
+            
             foreach (KeyValuePair<string, int> item in permissions)
             {
-                var element = FindName(item.Key.ToString()) as UIElement;
-                var label = FindName(item.Key.ToString() + "_Label") as UIElement;
-                element.Visibility = Visibility.Visible;
-                label.Visibility = Visibility.Visible;
+                try
+                {
+                    var element = FindName(item.Key.ToString()) as UIElement;
+                    var label = FindName(item.Key.ToString() + "_Label") as UIElement;
+                    element.Visibility = Visibility.Visible;
+                    label.Visibility = Visibility.Visible;
+                }catch(Exception e)
+                {
+                    chage_price = item.Key.ToString();
+                }
             }
         }
 

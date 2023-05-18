@@ -240,6 +240,9 @@ namespace WpfApp1.actions
         public string address { get; set; }
         public string brand { get; set; }
         public int stock { get; set; }
+        public int tax_value { get; set; }
+        
+        public int subtotal { get; set; }
 
         public IEnumerator GetEnumerator()
         {

@@ -62,6 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="designs\form_invoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="forms\login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,10 +152,15 @@
     </Page>
     <Compile Include="actions\conector.cs" />
     <Compile Include="actions\Constantes.cs" />
+    <Compile Include="actions\invoice.cs" />
+    <Compile Include="actions\OpenAIClient.cs" />
     <Compile Include="actions\Save_Data.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="designs\form_invoice.xaml.cs">
+      <DependentUpon>form_invoice.xaml</DependentUpon>
     </Compile>
     <Compile Include="forms\HeightToFontSizeConverter.cs" />
     <Compile Include="forms\login.xaml.cs">
@@ -226,6 +235,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="modals\List_Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="modals\List_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="modals\delete_product.xaml.cs">
@@ -234,6 +251,13 @@
     <Compile Include="modals\edit_product.xaml.cs">
       <DependentUpon>edit_product.xaml</DependentUpon>
     </Compile>
+    <Compile Include="modals\List_Client.xaml.cs">
+      <DependentUpon>List_Client.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modals\List_Product.xaml.cs">
+      <DependentUpon>List_Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

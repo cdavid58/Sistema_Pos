@@ -64,3 +64,9 @@ C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\edit_pro
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\edit_product.g.cs
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\delete_product.g.cs
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\delete_product.baml
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\form_invoice.g.cs
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\form_invoice.baml
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Client.g.cs
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Client.baml
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Product.g.cs
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Product.baml
