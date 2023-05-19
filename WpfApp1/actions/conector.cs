@@ -105,6 +105,7 @@ namespace WpfApp1
         public static int type_company;
         public static Dictionary<string, int> list_permissions;
         public static string user_name;
+        public static int user_id = 0;
         public bool Login(string psswd)
         {
             bool result = false;
@@ -249,7 +250,7 @@ namespace WpfApp1
             bool inventory = true;
             try
             {
-                string query = "select block, type_company,inventory from company where nit = " + nit;
+                string query = "select id, block, type_company,inventory from company where nit = " + nit;
                 MySqlCommand command = new MySqlCommand(query, c.Conect());
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
@@ -263,6 +264,7 @@ namespace WpfApp1
                                 
                             }
                             result = false;
+                            user_id = reader.GetInt32("id");
                             type_company = reader.GetInt32("type_company");
 
                         }

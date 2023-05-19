@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace WpfApp1.forms.Modules
@@ -8,7 +10,7 @@ namespace WpfApp1.forms.Modules
     public partial class Facturacion : Window
     {
 
-        private int number_invoice = 1;
+        private int number_invoice = 0;
         public static string Change_Price = "";
 
         public Facturacion()
@@ -40,10 +42,42 @@ namespace WpfApp1.forms.Modules
             CreateNewTab();
         }
 
+        private void CerrarPestana_Click(object sender, RoutedEventArgs e)
+        {
+            Button closeButton = sender as Button;
+            TabItem tabItem = FindParentTabItem(closeButton);
+
+            if (tabItem != null)
+            {
+                if (number_invoice > 1)
+                {
+                    tabControl.Items.Remove(tabItem);
+                    number_invoice--;
+                }
+                else
+                {
+                    MessageBox.Show("No puede cerrar la ultima pestaña abierta", "CUIDADO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                
+            }
+        }
+
+        private TabItem FindParentTabItem(UIElement element)
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(element);
+
+            while (parent != null && !(parent is TabItem))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            return parent as TabItem;
+        }
+
         private void CreateNewTab()
         {
             TabItem newTab = new TabItem();
-            newTab.Header = "Facturacion " + number_invoice.ToString();
+            newTab.Header = "Facturacion " + (number_invoice + 1).ToString();
             Frame frame = new Frame();
             designs.form_invoice fi = new designs.form_invoice();
             frame.Content = fi;
@@ -56,7 +90,6 @@ namespace WpfApp1.forms.Modules
                 tabControl.Items.Insert(insertIndex, newTab);
                 tabControl.SelectedItem = newTab;
             }));
-
             number_invoice++;
         }
 

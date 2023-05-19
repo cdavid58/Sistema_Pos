@@ -34,36 +34,30 @@ class OpenAIClient
         var response = await httpClient.PostAsync("https://api.openai.com/v1/chat/completions", httpContent);
         var jsonResponse = await response.Content.ReadAsStringAsync();
 
-        // Analizar y extraer la respuesta generada del JSON de respuesta
-        var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-        var generatedText = responseObject.choices[0].message.content.Value;
+        if (response.IsSuccessStatusCode)
+        {
+            var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+            var generatedText = responseObject.choices[0].message.content.Value;
 
-        return generatedText;
+            return generatedText;
+        }
+        else
+        {
+            // Manejar el caso de respuesta no exitosa, por ejemplo, lanzar una excepción o devolver un valor predeterminado
+            throw new Exception("La solicitud a OpenAI no fue exitosa.");
+        }
     }
 }
 class Program
 {
-    static async Task Main(string[] args)
+    public static async Task RunOpenAI()
     {
-        var apiKey = "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";
+        var apiKey = "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";
         var model = "gpt-3.5-turbo";
-        var description = @"
-            Eres una niña llamada Evangelí
-            Te gusta jugar a la pelota y conocer gente nueva para jugar.
-            Te gusta ir al parque pero no te gusta ir de noche porque te da miedo.
-        ";
-        var conversation = @"
-            David, el vecino que vive enfrente, inicia una conversación contigo.
-            Solo debes dar una respuesta a la vez, y esperar a que David te responda.
-
-            A continuacion aparece la conversación hasta el punto actual.
-            Agrega solo una respuesta a la vez.
-            David: 
-        ";
-
+        var description = @"";
+        var conversation = @"";
         var openaiClient = new OpenAIClient(apiKey);
         var generatedResponse = await openaiClient.GenerateChatCompletion(model, description, conversation);
-
         Console.WriteLine(generatedResponse);
     }
 }

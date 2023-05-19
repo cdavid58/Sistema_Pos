@@ -70,3 +70,5 @@ C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Cli
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Client.baml
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Product.g.cs
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Product.baml
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.xml

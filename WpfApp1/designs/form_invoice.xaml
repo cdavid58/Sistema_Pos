@@ -7,7 +7,7 @@
       xmlns:local1="clr-namespace:WpfApp1.forms"
       mc:Ignorable="d"
       Title="form_invoice"
-      Background="#fff" Height="855" Width="1535">
+      Background="#fff" Height="1633.5" Width="1761.5">
     <Page.Resources>
         <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
     </Page.Resources>
@@ -15,12 +15,13 @@
     <Grid Margin="0,0,0,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto" MinHeight="60"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="263*"/>
+            <RowDefinition Height="964*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" HorizontalAlignment="Center" Margin="135,0" Width="1265">
+        <Grid Grid.Row="0" HorizontalAlignment="Center" Margin="248,0" Width="1266">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" MinWidth="482"/>
                 <ColumnDefinition Width="auto" MinWidth="615"/>
@@ -44,19 +45,19 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical" Width="145">
                                         <Label Content="Items" HorizontalContentAlignment="Center" Margin="5" FontSize="20"/>
-                                        <TextBox x:Name="txtItems" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Left"
+                                        <TextBox x:Name="txtItems" Text="0" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5"
                                          FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="200">
                                         <Label Content="Existencia" HorizontalContentAlignment="Center" Margin="5" FontSize="20"/>
-                                        <TextBox x:Name="txtExist" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Left"
+                                        <TextBox x:Name="txtExist" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5"
                                          FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <Label Content="Ubicación" HorizontalContentAlignment="Center" Margin="5" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Left"
+                                        <TextBox TextWrapping="Wrap" x:Name="txtLocalitation" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5"
                                          FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" Width="248" IsEnabled="False"/>
                                     </StackPanel>
@@ -92,7 +93,7 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <Label Content="Factura N°" HorizontalContentAlignment="Center" Margin="5" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Left"
+                                        <TextBox TextWrapping="Wrap" x:Name="txtNumberInvoice" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5"
                                          FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" Width="272" IsEnabled="False"/>
                                     </StackPanel>
@@ -104,7 +105,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="135,0" Width="1265">
+        <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="248,0" Width="1266">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" MinWidth="482"/>
                 <ColumnDefinition Width="auto" MinWidth="615"/>
@@ -188,7 +189,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="74,0,75,0" Width="1386">
+        <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="188,0" Width="1386">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" MinWidth="482"/>
                 <ColumnDefinition Width="auto" MinWidth="615"/>
@@ -219,7 +220,7 @@
                                         <Label Content="Cantidad" HorizontalContentAlignment="Center" Margin="5" FontSize="20"/>
                                         <TextBox x:Name="txtQuantity" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5"
-                                         FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
+                                         FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" KeyDown="TxtQuantity_KeyDown"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="126" Visibility="Collapsed">
                                         <Label Content="Precio" HorizontalContentAlignment="Center" Margin="5" FontSize="20"/>
@@ -253,41 +254,41 @@
                                         <Label Content="Producto" HorizontalContentAlignment="Center" Margin="5" FontSize="20"/>
                                         <TextBox x:Name="txtProduct" TextWrapping="Wrap" ToolTip="Product code" Margin="10" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5"
-                                         FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
+                                         FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Orientation="Vertical" Height="121" Width="155">
                                                 <Grid Width="164" Height="43">
                                                     <TextBox x:Name="price_1" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,10" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="0"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="0" IsEnabled="false"
                                                      FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="43">
                                                     <TextBox x:Name="price_2" TextWrapping="Wrap"  ToolTip="Product code" Margin="0,0,10,10" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="0"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="0" IsEnabled="false"
                                                      FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="43">
                                                     <TextBox x:Name="price_3" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,10" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="0"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="0" IsEnabled="false"
                                                      FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
                                                 </Grid>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Height="121" Width="155">
                                                 <Grid Width="164" Height="43">
                                                     <TextBox x:Name="price_4" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,10" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="0"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="0" IsEnabled="false"
                                                      FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="43">
                                                     <TextBox x:Name="price_5" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,10" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="0"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="0" IsEnabled="false"
                                                      FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="43">
                                                     <TextBox x:Name="price_6" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,10" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="0"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="0" IsEnabled="false"
                                                      FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"/>
                                                 </Grid>
                                             </StackPanel>
@@ -301,16 +302,24 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="4" HorizontalAlignment="Right" Width="1525">
+        <Grid Grid.Row="3" HorizontalAlignment="Right" Width="1525" Height="445" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal"  Grid.Column="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="1436">
-                <Grid Width="1436">
+            <StackPanel Orientation="Horizontal"  Grid.Column="0" Margin="-71,10,99,0" HorizontalAlignment="Right" Width="1497" Height="306" VerticalAlignment="Top">
+                <Grid Width="1500" Height="106" VerticalAlignment="Top">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="1800">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="1495" RenderTransformOrigin="0.5,0.5">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.001"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -341,7 +350,7 @@
                                         </Style>
                                     </DataGrid.Resources>
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Código" Binding="{Binding code}" Width="170">
+                                        <DataGridTextColumn Header="Código" Binding="{Binding code}" Width="190">
                                             <DataGridTextColumn.CellStyle>
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
@@ -388,6 +397,41 @@
                     </StackPanel>
                 </Grid>
             </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="4" HorizontalAlignment="Right" Width="1752" Margin="0,0,0,189">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1235"/>
+                <ColumnDefinition Width="Auto" MinWidth="512"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Observaciones" FontSize="18"/>
+                            <TextBox Width="508" x:Name="txtObservation"
+                                     FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" Height="92"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1" Width="622">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Observaciones" FontSize="18"/>
+                            <TextBox Width="446"
+                                     FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Height="92"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="475">
+                        <StackPanel Orientation="Horizontal"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Label Content="Observaciones" FontSize="18" Grid.Column="1" Margin="16,10,371,707"/>
+            <TextBox FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Grid.Column="1" Margin="148,10,10,707"/>
         </Grid>
     </Grid>
 </Page>   

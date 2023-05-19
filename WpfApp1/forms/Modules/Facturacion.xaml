@@ -3,22 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.forms.Modules"
-        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
-        xmlns:tb="http://www.hardcodet.net/taskbar"
-        xmlns:local1="clr-namespace:WpfApp1.forms"
         mc:Ignorable="d"
-        Title="Facturacion" Height="450" Width="800" WindowState="Maximized"
+        Title="Facturacion" Height="742.5" Width="1176.5" WindowState="Maximized"
         Closing="Facturacion_Closing">
+    <Window.Resources>
+        <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="X" Click="CerrarPestana_Click" Width="20" Height="20" Margin="5,0,0,0" Background="Transparent"/>
+                            <TextBlock Text="{Binding}" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="+" FontSize="25" Click="AgregarPestaña_Click" Padding="-3,-9,-4,-5" Width="32" Margin="5,16,5,14" Background="Green"/>
-            <Button Content="X" Click="CerrarVentana_Click" Width="29" FontSize="25" Padding="-3,-9,-4,-5" Margin="5,16,5,14" Background="Red"/>
+            <Button Content="+" FontSize="25" Click="AgregarPestaña_Click" Padding="-3,-9,-4,-5" Width="32" Margin="5,3,5,4" Background="Green"/>
         </StackPanel>
-        <TabControl x:Name="tabControl" SelectionChanged="TabControl_SelectionChanged" Margin="0,5,0,10" Grid.Row="1"/>
+        <TabControl x:Name="tabControl" SelectionChanged="TabControl_SelectionChanged" Margin="0,5,0,10" Grid.Row="1" ItemContainerStyle="{StaticResource TabItemStyle}"/>
     </Grid>
 </Window>

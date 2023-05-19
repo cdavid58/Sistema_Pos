@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,15 +20,8 @@ namespace WpfApp1.designs
         {
             InitializeComponent();
             txtCode.Focus();
-            List<Product> data = new List<Product>();
-            data.Add(new Product(){ code = 1, product = "Producto 1",cost = 10, quantity = 10, tax = 19, discount = 500, ipo = 500, subtotal = 100 });
-            dgInvoice.ItemsSource = data;
             invoice i = new invoice();
-            i.GetQueryInvoice(1, 123456789123456, 1);
-            if(Facturacion.Change_Price == "Change_Price")
-            {
-                txtTypePrice.Visibility = Visibility.Visible;
-            }
+            txtNumberInvoice.Text = i.GetConsecutive().ToString();
         }
 
 
@@ -43,10 +37,14 @@ namespace WpfApp1.designs
                     var data = product_list;
                     if (product_list.Count > 0)
                     {
+                        foreach (var i in data)
+                        {
+                            Console.WriteLine(i);
+                        }
                         txtCode.Text = data["code"].ToString();
                         txtExist.Text = data["quantity"].ToString();
                         txtProduct.Text = data["product"].ToString();
-                        txtAddress.Text = data["address"].ToString();
+                        txtLocalitation.Text = data["address"].ToString();
                         price_1.Text = data["price_1"].ToString();
                         price_2.Text = data["price_2"].ToString();
                         price_3.Text = data["price_3"].ToString();
@@ -84,6 +82,11 @@ namespace WpfApp1.designs
             else if(e.Key == Key.C)
             {
                 txtClient.Focus();
+                e.Handled = true;
+            }
+            else if(e.Key == Key.O)
+            {
+                txtObservation.Focus();
                 e.Handled = true;
             }
         }
@@ -134,6 +137,43 @@ namespace WpfApp1.designs
                 e.Handled = true;
             }
             
+        }
+
+        private int GetPrice(int id)
+        {
+            int[] myNum = { 1, 2, 3, 4, 5, 6 };
+            return myNum.FirstOrDefault(n => n == id);
+        }
+
+        private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                int type_price = 2;
+                try {
+                    if(txtTypeClient.Text != null)
+                    {
+                        type_price = int.Parse(txtTypeClient.Text);
+                    }
+                }
+                catch (Exception){}
+                List<Invoice> data = new List<Invoice>();
+                invoice i = new invoice();
+                var invoice = i.GetQueryInvoice(int.Parse(txtQuantity.Text), long.Parse(txtCode.Text), type_price);
+                data.Add(new Invoice()
+                {
+                    code = invoice.code.ToString(),
+                    product = invoice.product,
+                    cost = invoice.cost,
+                    quantity = int.Parse(txtQuantity.Text),
+                    tax_value = invoice.tax_value,
+                    discount = invoice.discount,
+                    ipo = invoice.ipo,
+                    subtotal = invoice.subtotal
+                });
+                dgInvoice.ItemsSource = data;
+                txtItems.Text = dgInvoice.Items.Count.ToString();
+            }
         }
     }
 }

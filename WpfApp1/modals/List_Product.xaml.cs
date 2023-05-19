@@ -75,6 +75,7 @@ namespace WpfApp1.modals
                 list_data.Add("price_5", values[8].ToString());
                 list_data.Add("price_6", values[9].ToString());
                 list_data.Add("quantity", values[10].ToString());
+                list_data.Add("tax_value", values[16].ToString());
                 list_data.Add("address", values[22].ToString());
                 Hide();
                 e.Handled = true;

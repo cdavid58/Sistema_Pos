@@ -8,7 +8,6 @@ namespace WpfApp1.actions
     class Constantes
     {
         public static Dictionary<string, string> Colors;
-        public static string KEY = "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";
 
         public MySqlConnection Conect()
         {

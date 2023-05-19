@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WpfApp1.forms;
 
@@ -13,6 +14,15 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            //Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(async () =>
+            {
+                await Program.RunOpenAI();
+            });
         }
 
         private void Enter_Click(object sender, RoutedEventArgs e)
