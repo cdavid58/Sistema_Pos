@@ -27,6 +27,7 @@ namespace WpfApp1.modals
         {
             InitializeComponent();
             GetListInventory();
+            txtSearch.Focus();
         }
 
         private void TxtSearch_KeyDown(object sender, KeyEventArgs e)

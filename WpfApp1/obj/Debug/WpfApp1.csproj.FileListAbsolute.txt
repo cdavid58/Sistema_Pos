@@ -33,7 +33,6 @@ C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\forms\Modules\U
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
-C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\MySql.Data.dll
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\forms\login.baml
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\forms\Modules\Caja.baml
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\forms\Modules\Clientes.baml
@@ -72,3 +71,6 @@ C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Pro
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\modals\List_Product.baml
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\data_invoice.g.cs
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\data_invoice.baml
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\MySql.Data.dll

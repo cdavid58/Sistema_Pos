@@ -191,29 +191,33 @@ namespace WpfApp1
             string query;
             if (type_company == 1)
             {
-                query = "CREATE TABLE IF NOT EXISTS inventory (" +
-                    "id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY," +
-                    "code INT UNSIGNED NOT NULL UNIQUE," +
-                    "product VARCHAR(200) NOT NULL UNIQUE," +
-                    "cost DECIMAL(10, 2) NOT NULL," +
-                    "price_1 DECIMAL(10, 2) NOT NULL," +
-                    "price_2 DECIMAL(10, 2) NOT NULL," +
-                    "price_3 DECIMAL(10, 2) NOT NULL," +
-                    "price_4 DECIMAL(10, 2) NOT NULL," +
-                    "price_5 DECIMAL(10, 2) NOT NULL," +
-                    "price_6 DECIMAL(10, 2) NOT NULL," +
-                    "quantity INT UNSIGNED NOT NULL," +
-                    "pack INT NOT NULL," +
-                    "display INT NOT NULL," +
-                    "quantity_static INT UNSIGNED NOT NULL," +
-                    "pack_static INT NOT NULL," +
-                    "display_static INT NOT NULL," +
-                    "tax INT NOT NULL," +
-                    "ipo DECIMAL(10, 2) NOT NULL," +
-                    "discount INT NOT NULL," +
-                    "subcategory_id INT UNSIGNED," +
+                query = "CREATE TABLE IF NOT EXISTS inventory(" +
+                    "id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COLLATE 'utf8mb4_spanish_ci'," +
+                    "code INT UNSIGNED NOT NULL UNIQUE COLLATE 'utf8mb4_spanish_ci'," +
+                    "product VARCHAR(200) NOT NULL UNIQUE COLLATE 'utf8mb4_spanish_ci'," +
+                    "cost DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "price_1 DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "price_2 DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "price_3 DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "price_4 DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "price_5 DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "price_6 DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "quantity INT UNSIGNED NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "pack INT NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "display INT NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "quantity_static INT UNSIGNED NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "pack_static INT NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "display_static INT NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "tax INT NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "ipo DECIMAL(10, 2) NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "discount INT NOT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "brand VARCHAR(50) NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "stock INT(10) NULL COLLATE 'utf8mb4_spanish_ci', " +
+                    "address VARCHAR(50) NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "reserva INT NULL COLLATE 'utf8mb4_spanish_ci'," +
+                    "subcategory_id INT UNSIGNED COLLATE 'utf8mb4_spanish_ci'," +
                     "FOREIGN KEY (subcategory_id) REFERENCES subcategory(id)" +
-                    "); ";
+                ");";
 
             }
             else
@@ -229,13 +233,19 @@ namespace WpfApp1
                     "price_4 DECIMAL(10, 2) NOT NULL," +
                     "price_5 DECIMAL(10, 2) NOT NULL," +
                     "price_6 DECIMAL(10, 2) NOT NULL," +
+                    "quantity INT UNSIGNED NOT NULL," +
+                    "pack INT NOT NULL," +
+                    "display INT NOT NULL," +
                     "tax INT NOT NULL," +
                     "ipo DECIMAL(10, 2) NOT NULL," +
                     "discount INT NOT NULL," +
-                    "quantity INT UNSIGNED NOT NULL," +
+                    "brand VARCHAR(50) NULL," +
+                    "stock INT(10) NULL, " +
+                    "address VARCHAR(50) NULL," +
+                    "reserva INT NULL," +
                     "subcategory_id INT UNSIGNED," +
                     "FOREIGN KEY (subcategory_id) REFERENCES subcategory(id)" +
-                    "); ";
+                ");";
             }
             MySqlCommand cmd = new MySqlCommand(query, c.Conect());
             cmd.ExecuteNonQuery();
@@ -258,11 +268,6 @@ namespace WpfApp1
                     {
                         if (reader.GetInt32("block") == 0)
                         {
-                            if (reader.GetInt32("inventory") == 0)
-                            {
-                                inventory = false;
-                                
-                            }
                             result = false;
                             user_id = reader.GetInt32("id");
                             type_company = reader.GetInt32("type_company");

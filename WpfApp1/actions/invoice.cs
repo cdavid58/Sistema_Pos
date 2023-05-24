@@ -17,9 +17,6 @@ namespace WpfApp1.actions
         {
             bool result = false;
             string query = $"insert into invoice(number,user_id)value({number},{Query.user_id})";
-            Console.WriteLine(query);
-
-
             return result;
         }
 
@@ -50,16 +47,14 @@ namespace WpfApp1.actions
 
             if (reader.Read())
             {
-                MessageBox.Show(reader.GetDouble("tax_value").ToString());
-                order.subtotal = reader.GetDouble("subtotal");
+                order.subtotal = reader.GetInt32("subtotal");
                 order.code = reader.GetString("code");
                 order.product = reader.GetString("product");
                 order.tax = reader.GetInt16("tax");
                 order.discount = reader.GetInt16("discount");
-                order.cost = reader.GetDouble("cost");
-                order.tax_value = reader.GetDouble("tax_value");
+                order.cost = reader.GetInt32("cost");
+                order.tax_value = reader.GetInt32("tax_value");
             }
-
             c.Conect().Close();
             return order;
         }
@@ -136,12 +131,12 @@ namespace WpfApp1.actions
         public string code { get; set; }
         public string product { get; set; }
         public int quantity { get; set; }
-        public double cost { get; set; }
+        public int cost { get; set; }
         public int tax { get; set; }
-        public double tax_value { get; set; }
-        public double discount { get; set; }
-        public double ipo { get; set; }
-        public double subtotal {get;set;}
+        public int tax_value { get; set; }
+        public int discount { get; set; }
+        public int ipo { get; set; }
+        public int subtotal {get;set;}
 
     }
 }

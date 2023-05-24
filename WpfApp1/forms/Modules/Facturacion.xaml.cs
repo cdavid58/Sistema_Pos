@@ -35,6 +35,7 @@ namespace WpfApp1.forms.Modules
         private void Facturacion_Loaded(object sender, RoutedEventArgs e)
         {
             CreateNewTab();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void AgregarPestaña_Click(object sender, RoutedEventArgs e)
@@ -93,10 +94,7 @@ namespace WpfApp1.forms.Modules
             number_invoice++;
         }
 
-
-
-
-
+        
         private void WebBrowser_LoadCompleted(object sender, NavigationEventArgs e)
         {
             WebBrowser wb = (WebBrowser)sender;

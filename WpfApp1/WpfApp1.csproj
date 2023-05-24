@@ -65,6 +65,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="designs\data_invoice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="designs\form_invoice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +166,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="designs\data_invoice.xaml.cs">
+      <DependentUpon>data_invoice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="designs\form_invoice.xaml.cs">
       <DependentUpon>form_invoice.xaml</DependentUpon>
     </Compile>
@@ -226,6 +233,7 @@
     <Compile Include="forms\Modules\Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="forms\TextBox_Inventory.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -10,7 +10,6 @@
         mc:Ignorable="d"
         Title="Inventario" Height="768.2" Width="1504" WindowState="Maximized">
     <Window.Resources>
-        <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
         <tb:TaskbarIcon x:Key="NotifyIcon" x:Name="notifyIcon" DataContext="{Binding NotifyIconViewModel}" ToolTipText="My NotifyIcon App" IconSource="/WpfApp1;component/image/PC04.ICO" />
         <Style x:Key="MyButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#007ACC"/>
@@ -102,7 +101,7 @@
                     <Grid Grid.Row="0">
                         <Label Content="Código" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtCode" TextWrapping="Wrap" ToolTip="Código del producto" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtCode, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" KeyDown="TxtCode_KeyDown">
+                               VerticalContentAlignment="Center" KeyDown="TxtCode_KeyDown">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -126,7 +125,7 @@
                     <Grid Grid.Row="1">
                         <Label Content="Código Int" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtCodeInt" TextWrapping="Wrap" ToolTip="Código Interno del producto" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtCodeInt, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center">
+                               VerticalContentAlignment="Center">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -148,7 +147,7 @@
                     <Grid Grid.Row="2">
                         <Label Content="Productos" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtProduct" TextWrapping="Wrap" ToolTip="Nombre del producto" Margin="146,5,10,5" HorizontalContentAlignment="Left"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center">
+                              VerticalContentAlignment="Center">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -170,7 +169,7 @@
                     <Grid Grid.Row="3">
                         <Label Content="Cantidad" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtQuanty" TextWrapping="Wrap" ToolTip="Cantidad de producto" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtQuanty, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtQuanty_TextChanged" >
+                              VerticalContentAlignment="Center" TextChanged="TxtQuanty_TextChanged" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -192,7 +191,7 @@
                     <Grid Grid.Row="4">
                         <Label Content="Costo" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtCost" TextWrapping="Wrap" ToolTip="Cantidad de producto" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtCost, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtCost_TextChanged" >
+                              VerticalContentAlignment="Center" TextChanged="TxtCost_TextChanged" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -214,7 +213,7 @@
                     <Grid Grid.Row="5">
                         <Label Content="Total" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtTotal" TextWrapping="Wrap" ToolTip="Total de Costo * Cantidad" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtTotal, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False">
+                              VerticalContentAlignment="Center" IsEnabled="False">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -236,7 +235,7 @@
                     <Grid Grid.Row="6">
                         <Label Content="Precio 1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtPrice1" TextWrapping="Wrap" ToolTip="Precio de venta 1" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtPrice1, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtPrice1_TextChanged" >
+                              VerticalContentAlignment="Center" TextChanged="TxtPrice1_TextChanged" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -258,7 +257,7 @@
                     <Grid Grid.Row="7">
                         <Label Content="Precio 2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtPrice2" TextWrapping="Wrap" ToolTip="Precio de venta 2" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtPrice2, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtPrice2_TextChanged" >
+                              VerticalContentAlignment="Center" TextChanged="TxtPrice2_TextChanged" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -280,7 +279,7 @@
                     <Grid Grid.Row="8">
                         <Label Content="Precio 3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtPrice3" TextWrapping="Wrap" ToolTip="Precio de venta 3" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtPrice2, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtPrice3_TextChanged" >
+                              VerticalContentAlignment="Center" TextChanged="TxtPrice3_TextChanged" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -302,7 +301,7 @@
                     <Grid Grid.Row="9">
                         <Label Content="Precio 4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtPrice4" TextWrapping="Wrap" ToolTip="Precio de venta 4" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtPrice2, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtPrice4_TextChanged" >
+                              VerticalContentAlignment="Center" TextChanged="TxtPrice4_TextChanged" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -324,7 +323,7 @@
                     <Grid Grid.Row="10">
                         <Label Content="Precio 5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtPrice5" TextWrapping="Wrap" ToolTip="Precio de venta 5" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtPrice2, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtPrice5_TextChanged" >
+                              VerticalContentAlignment="Center" TextChanged="TxtPrice5_TextChanged" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -346,7 +345,7 @@
                     <Grid Grid.Row="11">
                         <Label Content="Precio 6" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtPrice6" TextWrapping="Wrap" ToolTip="Precio de venta 6" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtPrice2, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" TextChanged="TxtPrice6_TextChanged" LostFocus="TxtPrice6_LostFocus"  >
+                              VerticalContentAlignment="Center" TextChanged="TxtPrice6_TextChanged" LostFocus="TxtPrice6_LostFocus"  >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -368,7 +367,7 @@
                     <Grid Grid.Row="12">
                         <Label Content="IVA" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtTax" TextWrapping="Wrap" ToolTip="IVA aplicado al producto" Margin="146,5,10,5" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center">
+                              VerticalContentAlignment="Center">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -416,7 +415,7 @@
                     <Grid Grid.Row="0">
                         <Label Content="Categoria" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <ComboBox x:Name="Category" HorizontalAlignment="Left" Height="30" Margin="160,10,0,0" VerticalAlignment="Top" Width="284" SelectionChanged="Category_SelectionChanged"
-                                  FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center">
+                                   VerticalContentAlignment="Center">
                             <ComboBox.Background>
                                 <LinearGradientBrush EndPoint="0,1">
                                     <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -429,7 +428,7 @@
                     <Grid Grid.Row="1">
                         <Label Content="Subcategoria" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <ComboBox x:Name="Subcategory" HorizontalAlignment="Left" Height="30" Margin="160,10,0,0" VerticalAlignment="Top" Width="284"
-                                  FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False"  
+                                   VerticalContentAlignment="Center" IsEnabled="False"  
                                     SelectionChanged="Subcategory_SelectionChanged"/>
                     </Grid>
 
@@ -437,7 +436,7 @@
                     <Grid Grid.Row="3">
                         <Label Content="Inventario Ini" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtInvIni" TextWrapping="Wrap" ToolTip="Cantidad inicial de productos" Margin="159,5,10,5" Text="0" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False" >
+                              VerticalContentAlignment="Center" IsEnabled="False" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -467,7 +466,7 @@
                     <Grid Grid.Row="4">
                         <Label Content="Ubicación" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtAddress" TextWrapping="Wrap" ToolTip="Ubicación del producto" Margin="159,5,10,5" HorizontalContentAlignment="Left"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center">
+                              VerticalContentAlignment="Center">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -495,7 +494,7 @@
                     <Grid Grid.Row="5">
                         <Label Content="Stock" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtStock" TextWrapping="Wrap" ToolTip="Cantidad disponible del producto" Margin="159,5,10,5" HorizontalContentAlignment="Left"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center">
+                              VerticalContentAlignment="Center">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -523,7 +522,7 @@
                     <Grid Grid.Row="6">
                         <Label Content="Marca" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtBrand" TextWrapping="Wrap" ToolTip="Marca del producto" Margin="159,5,10,5" HorizontalContentAlignment="Left"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" KeyDown="TxtMarca_KeyDown">
+                              VerticalContentAlignment="Center" KeyDown="TxtMarca_KeyDown">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -551,7 +550,7 @@
                     <Grid Grid.Row="7">
                         <Label Content="% Utilidad 1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtUtili1" TextWrapping="Wrap" ToolTip="Total Utilidad 1" Margin="160,5,10,5" Text="$0" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False" >
+                              VerticalContentAlignment="Center" IsEnabled="False" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -581,7 +580,7 @@
                         <Label Content="% Utilidad 2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
 
                         <TextBox x:Name="txtUtili2" TextWrapping="Wrap" ToolTip="Total Utilidad 2" Margin="161,5,10,5" Text="$0" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False">
+                              VerticalContentAlignment="Center" IsEnabled="False">
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -609,7 +608,7 @@
                     <Grid Grid.Row="9">
                         <Label Content="% Utilidad 3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtUtili3" TextWrapping="Wrap" ToolTip="Total Utilidad 3" Margin="160,5,10,5" Text="$0" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False" >
+                              VerticalContentAlignment="Center" IsEnabled="False" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -637,7 +636,7 @@
                     <Grid Grid.Row="10">
                         <Label Content="% Utilidad 4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtUtili4" TextWrapping="Wrap" ToolTip="Total Utilidad 4" Margin="159,5,10,5" Text="$0" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False" >
+                              VerticalContentAlignment="Center" IsEnabled="False" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -665,7 +664,7 @@
                     <Grid Grid.Row="11">
                         <Label Content="% Utilidad 5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtUtili5" TextWrapping="Wrap" ToolTip="Total Utilidad 5" Margin="160,5,10,5" Text="$0" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False" >
+                              VerticalContentAlignment="Center" IsEnabled="False" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>
@@ -693,7 +692,7 @@
                     <Grid Grid.Row="12">
                         <Label Content="% Utilidad 6" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" />
                         <TextBox x:Name="txtUtili6" TextWrapping="Wrap" ToolTip="Total Utilidad 6" Margin="159,5,10,5" Text="$0" HorizontalContentAlignment="Right"
-                             FontSize="{Binding ElementName=txtProduct, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" IsEnabled="False" >
+                              VerticalContentAlignment="Center" IsEnabled="False" >
                             <TextBox.BorderBrush>
                                 <SolidColorBrush Color="Gray"/>
                             </TextBox.BorderBrush>

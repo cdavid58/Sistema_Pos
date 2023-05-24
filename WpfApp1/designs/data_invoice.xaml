@@ -1,0 +1,343 @@
+﻿<Window x:Class="WpfApp1.designs.data_invoice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Datos Factura" Height="607.309" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#465a65" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#90a4ad" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="66"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="69*"/>
+            <RowDefinition Height="81*"/>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="230*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Maestra de Inventario" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="26"
+               Margin="267,20,267,0" Height="45" Width="260" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="791"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="772">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="774">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <Grid HorizontalAlignment="Left" Width="779" Margin="0,0,-378,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="80"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="781" Margin="0,0,-2,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="43"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Fecha vencimiento de la factura " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Height="44" Width="360" />
+                                    <Label Content="asdasdad" x:Name="txtDate_Expires" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Height="43" Width="411" Margin="360,1,0,0" />
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="791"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="772">
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="0*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="19*"/>
+                                        <RowDefinition Height="24*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Forma de Pago" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Grid.RowSpan="2" Height="43" Width="181" />
+                                    <ComboBox x:Name="cbFPago" Height="30" Margin="181,5,21,0" FontSize="16" VerticalAlignment="Top" VerticalContentAlignment="Center" SelectionChanged="CbFPago_SelectionChanged">
+                                        <ComboBoxItem Content="Efectivo" />
+                                        <ComboBoxItem Content="Crédito" />
+                                        <ComboBoxItem Content="Transferencia" />
+                                    </ComboBox>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="378" Margin="0,0,-78,0">
+                                    <Label Content="Dias Vence" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Height="43" Width="137" />
+                                    <TextBox x:Name="txtDaysExpire" TextWrapping="Wrap" Text="0" ToolTip="Código del producto" Margin="159,5,31,0" HorizontalContentAlignment="Right" IsEnabled="False"
+                                            VerticalContentAlignment="Center" Height="38" VerticalAlignment="Top" FontSize="18" TextChanged="TxtDaysExpire_TextChanged" >
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="Gray"/>
+                                        </TextBox.BorderBrush>
+                                        <TextBox.BorderThickness>
+                                            <Thickness>2</Thickness>
+                                        </TextBox.BorderThickness>
+                                        <TextBox.Padding>
+                                            <Thickness>5</Thickness>
+                                        </TextBox.Padding>
+                                        <TextBox.Template>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="5">
+                                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </TextBox.Template>
+                                    </TextBox>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="791"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="772">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="774">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <Grid HorizontalAlignment="Left" Width="779" Margin="0,0,-378,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="80"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="781" Margin="0,0,-2,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="43"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Observaciones" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Grid.RowSpan="2" Height="43" Width="175" />
+                                    <TextBox x:Name="txtCode" TextWrapping="Wrap" ToolTip="Código del producto" Margin="180,5,10,-15" HorizontalContentAlignment="Left"
+                                           Height="54" VerticalAlignment="Top" FontSize="16">
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="Gray"/>
+                                        </TextBox.BorderBrush>
+                                        <TextBox.BorderThickness>
+                                            <Thickness>2</Thickness>
+                                        </TextBox.BorderThickness>
+                                        <TextBox.Padding>
+                                            <Thickness>5</Thickness>
+                                        </TextBox.Padding>
+                                        <TextBox.Template>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="5">
+                                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </TextBox.Template>
+                                    </TextBox>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="791"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="772">
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="0*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="19*"/>
+                                        <RowDefinition Height="24*"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="Descuento" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Grid.RowSpan="2" Height="43" Width="181" />
+                                    <TextBox TextWrapping="Wrap" Text="0" ToolTip="Descuento al total de la factura" Margin="180,5,10,0" HorizontalContentAlignment="Right"
+                                            Height="38" VerticalAlignment="Top" FontSize="18">
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="Gray"/>
+                                        </TextBox.BorderBrush>
+                                        <TextBox.BorderThickness>
+                                            <Thickness>2</Thickness>
+                                        </TextBox.BorderThickness>
+                                        <TextBox.Padding>
+                                            <Thickness>5</Thickness>
+                                        </TextBox.Padding>
+                                        <TextBox.Template>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="5">
+                                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </TextBox.Template>
+                                    </TextBox>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="378" Margin="0,0,-78,0">
+                                    <Label Content="Vendedor" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Height="43" Width="137" Margin="10,-1,0,1" />
+                                    <TextBox x:Name="txtSeller" TextWrapping="Wrap" Text="0" ToolTip="Código del producto" Margin="163,5,27,0" HorizontalContentAlignment="Right" Height="38" VerticalAlignment="Top" IsEnabled="False" FontSize="18">
+                                        <TextBox.BorderBrush>
+                                            <SolidColorBrush Color="Gray"/>
+                                        </TextBox.BorderBrush>
+                                        <TextBox.BorderThickness>
+                                            <Thickness>2</Thickness>
+                                        </TextBox.BorderThickness>
+                                        <TextBox.Padding>
+                                            <Thickness>5</Thickness>
+                                        </TextBox.Padding>
+                                        <TextBox.Template>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="5">
+                                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </TextBox.Template>
+                                    </TextBox>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="791"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="772">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="774">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400"/>
+                            <ColumnDefinition Width="400"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="378" Margin="0,0,-78,0">
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <Grid Margin="2.5">
+                                            <Button Content="Clientes" />
+                                        </Grid>
+                                        <Grid Margin="2.5">
+                                            <Button Content="Prueba"/>
+                                        </Grid>
+                                        <Grid Margin="2.5">
+                                            <Button Content="Congelar"/>
+                                        </Grid>
+                                        <Grid Margin="2.5">
+                                            <Button Content="Congelar"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="378" Margin="0,0,-78,0">
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <Grid Margin="2.5">
+                                            <Button Content="Congelar" />
+                                        </Grid>
+                                        <Grid Margin="2.5">
+                                            <Button Content="Descongelar"/>
+                                        </Grid>
+                                        <Grid Margin="2.5">
+                                            <Button Content="Congelar"/>
+                                        </Grid>
+                                        <Grid Margin="2.5">
+                                            <Button Content="Congelar"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>

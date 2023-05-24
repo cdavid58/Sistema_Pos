@@ -37,25 +37,20 @@ namespace WpfApp1.actions
             {
                 Colors = new Dictionary<string, string>();
                 string query = "select * from color";
-                MySqlCommand command = new MySqlCommand(query, Conect());
-                using (MySqlDataReader reader = command.ExecuteReader())
+                MySqlCommand cmd = new MySqlCommand(query, Conect());
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        
                         Colors.Add(reader.GetString("name_color"), "#"+reader.GetString("hexadecimal"));
                     }
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show($"Error {ex.Message}");
+                Console.WriteLine($"Error GETCOLORS {ex.Message}");
             }
             Conect().Close();
         }
-
-
-
-
 
     }
 }

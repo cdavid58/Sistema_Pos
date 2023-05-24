@@ -54,9 +54,9 @@ namespace WpfApp1.forms
                     var label = FindName(item.Key.ToString() + "_Label") as UIElement;
                     element.Visibility = Visibility.Visible;
                     label.Visibility = Visibility.Visible;
-                }catch(Exception e)
+                }catch(Exception)
                 {
-                    chage_price = item.Key.ToString();
+                    //chage_price = item.Key.ToString();
                 }
             }
         }

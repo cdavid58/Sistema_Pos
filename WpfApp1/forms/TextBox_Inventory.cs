@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows.Data;
 
 namespace WpfApp1.forms
 {
-    class HeightToFontSizeConverter : IValueConverter
+    class TextBox_Inventory
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double height = (double)value;
-            double fontSize = height * 0.75;
+            double fontSize = height * 0.5;
             return fontSize;
         }
 
