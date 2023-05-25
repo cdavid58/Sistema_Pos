@@ -33,6 +33,17 @@ namespace WpfApp1.designs
                     txtDaysExpire.IsEnabled = false;
                     txtDaysExpire.Text = "0";
                 }
+                int vs = 10;
+                switch (valorSeleccionado)
+                {
+                    case "Crédito":
+                        vs = 30;
+                        break;
+                    case "Transferecia":
+                        vs = 31;
+                        break;
+                }
+                form_invoice.payment_method = vs;
             }
         }
 
@@ -41,8 +52,17 @@ namespace WpfApp1.designs
             try
             {
                 txtDate_Expires.Content = date.AddDays(int.Parse(txtDaysExpire.Text)).ToString();
+                form_invoice.DaysExpire = int.Parse(txtDaysExpire.Text);
+
             }
             catch(Exception ex) { Console.WriteLine(ex.Message); }
+        }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            form_invoice.notes = txtNotes.Text;
+            form_invoice.discount_to_invoice = double.Parse(txtDiscount.Text);
+            Close();
         }
     }
 

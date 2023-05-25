@@ -33,18 +33,17 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
+    <Grid Height="578" VerticalAlignment="Top">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" MinHeight="66"/>
-            <RowDefinition Height="65*"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="66*"/>
             <RowDefinition Height="69*"/>
             <RowDefinition Height="81*"/>
             <RowDefinition Height="67*"/>
             <RowDefinition Height="230*"/>
         </Grid.RowDefinitions>
-        <Label Content="Maestra de Inventario" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="26"
+        <Label Content="FINALIZAR FACTURA" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="26"
                Margin="267,20,267,0" Height="45" Width="260" />
-
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" MinWidth="791"/>
@@ -168,7 +167,7 @@
                                         <RowDefinition Height="43"/>
                                     </Grid.RowDefinitions>
                                     <Label Content="Observaciones" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" Grid.RowSpan="2" Height="43" Width="175" />
-                                    <TextBox x:Name="txtCode" TextWrapping="Wrap" ToolTip="Código del producto" Margin="180,5,10,-15" HorizontalContentAlignment="Left"
+                                    <TextBox x:Name="txtNotes" TextWrapping="Wrap" ToolTip="Código del producto" Margin="180,5,10,-15" HorizontalContentAlignment="Left"
                                            Height="54" VerticalAlignment="Top" FontSize="16">
                                         <TextBox.BorderBrush>
                                             <SolidColorBrush Color="Gray"/>
@@ -221,7 +220,7 @@
                                         <RowDefinition Height="24*"/>
                                     </Grid.RowDefinitions>
                                     <Label Content="Descuento" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" Grid.RowSpan="2" Height="43" Width="181" />
-                                    <TextBox TextWrapping="Wrap" Text="0" ToolTip="Descuento al total de la factura" Margin="180,5,10,0" HorizontalContentAlignment="Right"
+                                    <TextBox x:Name="txtDiscount" TextWrapping="Wrap" Text="0" ToolTip="Descuento al total de la factura" Margin="180,5,10,0" HorizontalContentAlignment="Right"
                                             Height="38" VerticalAlignment="Top" FontSize="18">
                                         <TextBox.BorderBrush>
                                             <SolidColorBrush Color="Gray"/>
@@ -276,60 +275,29 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="5" Height="66" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" MinWidth="791"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="10,10,0,10" HorizontalAlignment="Left" Width="772">
+            <StackPanel Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Left" Width="772" Height="60" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
                     <Grid Width="774">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="400"/>
-                            <ColumnDefinition Width="400"/>
+                            <ColumnDefinition Width="800"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Vertical" Grid.Column="0">
-                            <Grid>
+                        <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Left" Width="774">
+                            <Grid HorizontalAlignment="Left" Width="781">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="378" Margin="0,0,-78,0">
+                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="771">
                                     <StackPanel Orientation="Vertical" Margin="5">
                                         <Grid Margin="2.5">
-                                            <Button Content="Clientes" />
+                                            <Button x:Name="btnOrder" Content="Facturar" Margin="0,0,0,-16" Click="BtnOrder_Click" />
                                         </Grid>
-                                        <Grid Margin="2.5">
-                                            <Button Content="Prueba"/>
-                                        </Grid>
-                                        <Grid Margin="2.5">
-                                            <Button Content="Congelar"/>
-                                        </Grid>
-                                        <Grid Margin="2.5">
-                                            <Button Content="Congelar"/>
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
-
-                        <StackPanel Orientation="Vertical" Grid.Column="1">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" HorizontalAlignment="Left" Width="378" Margin="0,0,-78,0">
-                                    <StackPanel Orientation="Vertical" Margin="5">
-                                        <Grid Margin="2.5">
-                                            <Button Content="Congelar" />
-                                        </Grid>
-                                        <Grid Margin="2.5">
-                                            <Button Content="Descongelar"/>
-                                        </Grid>
-                                        <Grid Margin="2.5">
-                                            <Button Content="Congelar"/>
-                                        </Grid>
-                                        <Grid Margin="2.5">
-                                            <Button Content="Congelar"/>
-                                        </Grid>
+                                        <Grid Margin="2.5"/>
+                                        <Grid Margin="2.5"/>
+                                        <Grid Margin="2.5"/>
                                     </StackPanel>
                                 </Grid>
                             </Grid>

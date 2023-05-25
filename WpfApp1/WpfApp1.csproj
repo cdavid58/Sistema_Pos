@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="designs\ticket_pos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="forms\login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +175,9 @@
     </Compile>
     <Compile Include="designs\form_invoice.xaml.cs">
       <DependentUpon>form_invoice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="designs\ticket_pos.xaml.cs">
+      <DependentUpon>ticket_pos.xaml</DependentUpon>
     </Compile>
     <Compile Include="forms\HeightToFontSizeConverter.cs" />
     <Compile Include="forms\login.xaml.cs">

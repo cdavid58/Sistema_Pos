@@ -11,13 +11,24 @@ namespace WpfApp1.actions
         private Product product;
         private Invoice order;
         public bool exists_client = false;
+        
 
 
-        public bool CreateInvoice(int number)
+        public bool CreateInvoice(HeaderInvoice hi)
         {
             bool result = false;
-            string query = $"insert into invoice(number,user_id)value({number},{Query.user_id})";
+            string query = $"call Create_Invoice({hi.number},{hi.user},'{hi.terminal}',{hi.payment_form},{hi.payment_method},'{hi.notes}',{hi.client_id})";
+            MySqlCommand cmd = new MySqlCommand(query, c.Conect());
+            cmd.ExecuteNonQuery();
+            result = true;
             return result;
+        }
+
+        public void CreateDetailsInvoice(DetailsInvoice di)
+        {
+            string query = $"call Details_Invoice({di.code},'{di.product}',{di.quantity},{di.price},{di.discount},{di.tax},{di.ipo},{di.invoice_id})";
+            MySqlCommand cmd = new MySqlCommand(query, c.Conect());
+            cmd.ExecuteNonQuery();
         }
 
         public int GetConsecutive()
@@ -54,6 +65,7 @@ namespace WpfApp1.actions
                 order.discount = reader.GetInt16("discount");
                 order.cost = reader.GetInt32("cost");
                 order.tax_value = reader.GetInt32("tax_value");
+                order.booking = reader.GetInt32("booking");
             }
             c.Conect().Close();
             return order;
@@ -110,7 +122,12 @@ namespace WpfApp1.actions
     class HeaderInvoice
     {
         public int number { get; set; }
-        public string user { get; set; }
+        public int user { get; set; }
+        public string terminal { get; set; }
+        public int payment_form { get; set; }
+        public int payment_method { get; set; }
+        public string notes { get; set; }
+        public int client_id { get; set; }
     }
 
     class DetailsInvoice
@@ -137,6 +154,6 @@ namespace WpfApp1.actions
         public int discount { get; set; }
         public int ipo { get; set; }
         public int subtotal {get;set;}
-
+        public int booking { get; set; }
     }
 }

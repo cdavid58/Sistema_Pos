@@ -141,7 +141,7 @@
                                 </StackPanel>
                             </Grid>
                         </Grid>
-                    </StackPanel>
+                    </StackPanel> 
                 </Grid>
             </StackPanel>
         </Grid>
@@ -176,14 +176,14 @@
                                     <StackPanel Orientation="Vertical" Width="200">
                                         <Label Content="Cantidad" HorizontalContentAlignment="Center" FontSize="20"/>
                                         <TextBox x:Name="txtQuantity" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10,0,0,0" HorizontalContentAlignment="Left"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0" GotFocus="TxtQuantity_GotFocus"
                                          FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" KeyDown="TxtQuantity_KeyDown" Height="39"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="106" Height="79" VerticalAlignment="Bottom" Margin="10,0,0,16">
                                         <Label Content="Precio" HorizontalContentAlignment="Center" FontSize="20"/>
                                         <TextBox x:Name="txtTypePrice" Text="1" TextWrapping="Wrap" ToolTip="Product code" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Height="39"/>
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Height="39" KeyDown="TxtTypePrice_KeyDown" GotFocus="TxtTypePrice_GotFocus"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
@@ -327,7 +327,7 @@
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="IVA" Binding="{Binding tax}" Width="100">
+                                        <DataGridTextColumn Header="IVA" Binding="{Binding tax_value}" Width="100">
                                             <DataGridTextColumn.CellStyle>
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
@@ -368,7 +368,7 @@
                 <Grid>
                     <Grid Grid.Row="0">
                         <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia" Width="100" FontSize="18" FontWeight="Bold" Margin="5"/>
+                            <Button x:Name="btnUltCopy" Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia" Width="100" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnUltCopy_Click"/>
                             <Button x:Name="btnClient" Style="{StaticResource RoundedButtonStyle}" Content="Clientes" Width="100" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnClient_Click"/>
                             <Button Style="{StaticResource RoundedButtonStyle}" Content="Ver Electónica" Width="150" FontSize="18" FontWeight="Bold" Margin="5"/>
                             <Button Style="{StaticResource RoundedButtonStyle}" Content="Electrónica" Width="150" FontSize="18" FontWeight="Bold" Margin="5"/>

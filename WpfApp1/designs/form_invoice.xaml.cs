@@ -11,8 +11,13 @@ namespace WpfApp1.designs
 
     public partial class form_invoice : Page
     {
+        private List<Invoice> data = new List<Invoice>();
         public static Dictionary<string, string> client_list = new Dictionary<string, string>();
         public static Dictionary<string, string> product_list = new Dictionary<string, string>();
+        public static string notes = "";
+        public static int DaysExpire = 0, payment_method = 0;
+        public static double discount_to_invoice = 0;
+
         private double total_base = 0;
 
         private int count_limit = 0;
@@ -23,9 +28,26 @@ namespace WpfApp1.designs
             txtCode.Focus();
             invoice i = new invoice();
             txtNumberInvoice.Text = i.GetConsecutive().ToString();
-            
         }
         
+        public int Payment_Form()
+        {
+            int value = 1;
+            switch (payment_method)
+            {
+                case 10:
+                    value = 1;
+                    break;
+                case 30:
+                    value = 2;
+                    break;
+                case 31:
+                    value = 1;
+                    break;
+            }
+            return value;
+        }
+
         private void TxtCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -47,12 +69,14 @@ namespace WpfApp1.designs
                         price_5.Text = data["price_5"];
                         price_6.Text = data["price_6"];
                         txtQuantity.Focus();
+                        product_list.Clear();
                     }
                     else
                     {
                         MessageBox.Show("El producto no existe", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                } else
+                }
+                else
                 {
                     invoice i = new invoice();
                     var product = i.GetProduct(long.Parse(txtCode.Text));
@@ -73,7 +97,8 @@ namespace WpfApp1.designs
                         MessageBox.Show("El producto que busca no existe", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-            }else if (e.Key == Key.C)
+            }
+            else if (e.Key == Key.C)
             {
                 try
                 {
@@ -88,29 +113,82 @@ namespace WpfApp1.designs
             }
             else if (e.Key == Key.F)
             {
-                data_invoice di = new data_invoice();
-                di.ShowDialog();
-                e.Handled = true;
+                if (dgInvoice.Items.Count > 0)
+                {
+                    data_invoice di = new data_invoice();
+                    di.ShowDialog();
+                    e.Handled = true;
+                    HeaderInvoice hi = new HeaderInvoice
+                    {
+                        number = int.Parse(txtNumberInvoice.Text),
+                        user = Query.pk_user,
+                        terminal = Environment.UserName,
+                        payment_form = Payment_Form(),
+                        payment_method = payment_method,
+                        notes = string.IsNullOrEmpty(notes) ? "No hay" : notes,
+                        client_id = int.Parse(client_list["pk_client"])
+                    };
+                    invoice i = new invoice();
+                    i.CreateInvoice(hi);
+
+                    if (dgInvoice.ItemsSource is IEnumerable<Invoice> data)
+                    {
+                        foreach (var item in data)
+                        {
+                            DetailsInvoice details_invoice = new DetailsInvoice
+                            {
+                                code = long.Parse(item.code),
+                                product = item.product.ToString(),
+                                quantity = int.Parse(item.quantity.ToString()),
+                                price = double.Parse(item.cost.ToString()),
+                                discount = int.Parse(item.discount.ToString()),
+                                tax = int.Parse(item.tax.ToString()),
+                                ipo = double.Parse(item.ipo.ToString()),
+                                invoice_id = int.Parse(txtNumberInvoice.Text)
+                            };
+                            i.CreateDetailsInvoice(details_invoice);
+                            GarbageCollector(details_invoice);
+                        }
+                    }
+                    GarbageCollector(di);
+                    GarbageCollector(hi);
+                    GarbageCollector(i);
+                    Clean();
+                    MessageBox.Show("Factura creada con éxito", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Debe tener productos en la lista", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else if(e.Key == Key.P)
+            {
+                ticket_pos tp = new ticket_pos();
+                tp.Show();
             }
         }
 
         private void CalculateTotal()
         {
-            int total = 0, subtotal = 0, tax = 0;
+            int total = 0, subtotal = 0, tax = 0, discount = 0;
             if (dgInvoice.ItemsSource is IEnumerable<Invoice> data)
             {
                 foreach (var item in data)
                 {
+
+                    discount += item.cost * (item.discount / 100) * item.quantity;
                     total += item.subtotal + item.tax_value;
                     subtotal += item.subtotal;
                     tax += (item.tax_value * item.quantity);
+                    
                 }
             }
             txtTotal.Text = total.ToString();
             txtTaxes.Text = tax.ToString();
             txtSubtotal.Text = subtotal.ToString();
+            txtDiscount.Text = discount.ToString();
         }
-        private List<Invoice> data = new List<Invoice>();
+        
 
         private bool ProductExist(int quantity, string code)
         {
@@ -128,13 +206,14 @@ namespace WpfApp1.designs
                     }
                 }
             }
-            
-            dgInvoice.ItemsSource = null;
-            dgInvoice.ItemsSource = data;
+            MessageBox.Show(exist.ToString());
+            if (exist)
+            {
+                dgInvoice.ItemsSource = null;
+                dgInvoice.ItemsSource = data;
+            }
             return exist;
         }
-
-        
 
         private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
@@ -156,11 +235,14 @@ namespace WpfApp1.designs
                             tax_value = invoice.tax_value,
                             discount = invoice.discount,
                             ipo = invoice.ipo,
-                            subtotal = invoice.subtotal
+                            subtotal = invoice.subtotal,
+                            
                         });
+                        txtItems.Text = dgInvoice.Items.Count.ToString();
+                        dgInvoice.ItemsSource = null;
                         dgInvoice.ItemsSource = data;
                     }
-                    txtItems.Text = dgInvoice.Items.Count.ToString();
+
                     txtTotalBase.Text = Math.Round(total_base).ToString();
                     int limit = int.Parse(txtTotalBase.Text);
                     if(limit > 212 && count_limit == 0)
@@ -169,14 +251,22 @@ namespace WpfApp1.designs
                         count_limit = 1;
                     }
 
-                    
+                    txtCode.Clear();
+                    txtQuantity.Clear();
+                    txtCode.Focus();
                     CalculateTotal();
+                    GarbageCollector(invoice);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     MessageBox.Show("No puede facturar en ceros", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             } 
+        }
+
+        private void BtnUltCopy_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         private void BtnClient_Click(object sender, RoutedEventArgs e)
@@ -192,7 +282,101 @@ namespace WpfApp1.designs
             catch (Exception) { }
         }
 
+        private void GarbageCollector(object obj)
+        {
+            obj = null;
+        }
 
+        private void TxtTypePrice_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                invoice i = new invoice();
+                var invoice = i.GetQueryInvoice(int.Parse(txtQuantity.Text), long.Parse(txtCode.Text), int.Parse(txtTypePrice.Text));
+                total_base += invoice.cost;
+                if (!ProductExist(int.Parse(txtQuantity.Text), invoice.code))
+                {
+                    data.Add(new Invoice()
+                    {
+                        code = invoice.code.ToString(),
+                        product = invoice.product,
+                        cost = invoice.cost,
+                        quantity = int.Parse(txtQuantity.Text),
+                        tax_value = invoice.tax_value,
+                        discount = invoice.discount,
+                        ipo = invoice.ipo,
+                        subtotal = invoice.subtotal,
+
+                    });
+                    txtItems.Text = dgInvoice.Items.Count.ToString();
+                    dgInvoice.ItemsSource = data;
+                }
+                txtTotalBase.Text = Math.Round(total_base).ToString();
+                int limit = int.Parse(txtTotalBase.Text);
+                if (limit > 212 && count_limit == 0)
+                {
+                    MessageBox.Show("La factura sera enviada a electrónica, ya que ha superado el limite en la base", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    count_limit = 1;
+                }
+
+                txtCode.Clear();
+                txtQuantity.Clear();
+                txtCode.Focus();
+                CalculateTotal();
+                GarbageCollector(invoice);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("No puede facturar en ceros", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+
+        private void TxtQuantity_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtCode.Text))
+            {
+                txtCode.Focus();
+            }
+        }
+
+        private void TxtTypePrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtTypePrice.Clear();
+        }
+
+        private void Clean()
+        {
+            txtItems.Text = "0";
+            txtExist.Text = "0";
+            txtCode.Text = "";
+            txtQuantity.Text = "";
+            txtProduct.Text = "No hay producto seleccionado";
+            price_1.Text = "0";
+            price_2.Text = "0";
+            price_3.Text = "0";
+            price_4.Text = "0";
+            price_5.Text = "0";
+            price_6.Text = "0";
+            lbClient.Content = "Consumidor Final";
+            txtSubtotal.Text = "0";
+            txtTaxes.Text = "0";
+            txtDiscount.Text = "0";
+            txtTotal.Text = "0";
+            txtTotalBase.Text = "0";
+            txtCode.Focus();
+            data_invoice di = new data_invoice();
+            di.txtNotes.Text = "";
+            di.txtDaysExpire.Text = "0";
+            di.cbFPago.SelectedIndex = 0;
+            dgInvoice.ItemsSource = null;
+            data.Clear();
+            invoice i = new invoice();
+            txtNumberInvoice.Text = i.GetConsecutive().ToString();
+            GarbageCollector(di);
+            GarbageCollector(i);
+        }
         
     }
 }

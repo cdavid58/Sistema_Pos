@@ -55,6 +55,7 @@ namespace WpfApp1.modals
                 DataRowView dataRowView = row.Item as DataRowView;
                 var values = dataRowView.Row.ItemArray;
                 var data = form_invoice.client_list;
+                data.Add("pk_client", values[0].ToString());
                 data.Add("documentI", values[1].ToString());
                 data.Add("name", values[2].ToString());
                 data.Add("address", values[3].ToString());

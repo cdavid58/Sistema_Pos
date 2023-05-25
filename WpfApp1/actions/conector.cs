@@ -105,7 +105,7 @@ namespace WpfApp1
         public static int type_company;
         public static Dictionary<string, int> list_permissions;
         public static string user_name;
-        public static int user_id = 0;
+        public static int pk_user = 0, user_id = 0;
         public bool Login(string psswd)
         {
             bool result = false;
@@ -125,8 +125,9 @@ namespace WpfApp1
                                 // Acceder a los valores de las columnas
                                 int id = reader.GetInt32("psswd");
                                 user_name = reader.GetString("username");
-                                int pk_user = reader.GetInt32("id");
-                                Query_permissions(pk_user);
+                                pk_user = reader.GetInt32("id");
+                                user_id = reader.GetInt32("id");
+                                Query_permissions(user_id);
                                 result = true;
                             }
                             else
@@ -269,7 +270,7 @@ namespace WpfApp1
                         if (reader.GetInt32("block") == 0)
                         {
                             result = false;
-                            user_id = reader.GetInt32("id");
+                            pk_user = reader.GetInt32("id");
                             type_company = reader.GetInt32("type_company");
 
                         }

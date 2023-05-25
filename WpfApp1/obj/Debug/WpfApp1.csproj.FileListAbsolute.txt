@@ -74,3 +74,5 @@ C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\data_invoice.g.cs
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\data_invoice.baml
 C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\bin\Debug\MySql.Data.dll
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\ticket_pos.g.cs
+C:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\obj\Debug\designs\ticket_pos.baml
