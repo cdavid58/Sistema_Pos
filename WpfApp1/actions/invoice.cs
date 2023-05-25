@@ -1,7 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
+using WpfApp1.designs;
 
 namespace WpfApp1.actions
 {
@@ -11,6 +13,27 @@ namespace WpfApp1.actions
         private Product product;
         private Invoice order;
         public bool exists_client = false;
+
+
+        public List<Item> PrintPOS(string name)
+        {
+            var invoice = new List<Item>();
+            string query = $"CALL GetLastInvoice('{name}')";
+            MySqlCommand cmd = new MySqlCommand(query, c.Conect());
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Item i = new Item
+                {
+                    product = reader.GetString("product"),
+                    quantity = reader.GetInt32("quantity"),
+                    cost = reader.GetInt32("price"),
+                    subtotal = reader.GetInt32("subtotal")
+                };
+                invoice.Add(i);
+            }
+            return invoice;
+        }
         
 
 

@@ -4,6 +4,7 @@ using System.Drawing.Printing;
 using System.Runtime.InteropServices;
 using System;
 using System.Drawing;
+using WpfApp1.actions;
 
 namespace WpfApp1.designs
 {
@@ -17,16 +18,21 @@ namespace WpfApp1.designs
             InitializeComponent();
 
             // Llenar datos de ejemplo
-            var items = new List<Item>
-            {
-                new Item { Nombre = "Producto 1", Cantidad = 2, PrecioUnitario = 10, Subtotal = 20 },
-                new Item { Nombre = "Producto 2", Cantidad = 1, PrecioUnitario = 15, Subtotal = 15 },
-                new Item { Nombre = "Producto 3", Cantidad = 3, PrecioUnitario = 5, Subtotal = 15 },
-                new Item { Nombre = "Producto 4", Cantidad = 4, PrecioUnitario = 8, Subtotal = 32 }
-            };
-
-            DataContext = new FacturaViewModel { Items = items, Total = 82 };
+            //var items = new List<Item>
+            //{
+            //    new Item { Nombre = "Producto 1", Cantidad = 2, PrecioUnitario = 10, Subtotal = 20 },
+            //    new Item { Nombre = "Producto 2", Cantidad = 1, PrecioUnitario = 15, Subtotal = 15 },
+            //    new Item { Nombre = "Producto 3", Cantidad = 3, PrecioUnitario = 5, Subtotal = 15 },
+            //    new Item { Nombre = "Producto 4", Cantidad = 4, PrecioUnitario = 8, Subtotal = 32 }
+            //};
+            //DataContext =  new FacturaViewModel { Items = i.PrintPOS(Environment.UserName.ToString()), Total = 82 };
+            invoice i = new invoice();
+            var data = i.PrintPOS(Environment.UserName.ToString());
+            DataContext = new FacturaViewModel { Items = data, Total = 82 };
+            
         }
+
+        #region
 
         [DllImport("winspool.Drv", EntryPoint = "OpenPrinterA", SetLastError = true, CharSet = CharSet.Ansi, ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
         public static extern bool OpenPrinter([MarshalAs(UnmanagedType.LPStr)] string szPrinter, out IntPtr hPrinter, IntPtr pd);
@@ -62,17 +68,13 @@ namespace WpfApp1.designs
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
         {
-            string printerName = GetDefaultPrinterName(); // Obtiene el nombre de la impresora térmica predeterminada
-
-            // Crea el contenido de la factura
+            string printerName = GetDefaultPrinterName();
             string content = "Factura POS" + "\n\n";
             foreach (var item in ((FacturaViewModel)DataContext).Items)
             {
-                content += item.Nombre + " - " + item.Cantidad + " x $" + item.PrecioUnitario + " = $" + item.Subtotal + "\n";
+                content += item.product + " - " + item.quantity + " x $" + item.cost + " = $" + item.subtotal + "\n";
             }
             content += "\nTotal: $" + ((FacturaViewModel)DataContext).Total;
-
-            // Imprime el contenido en la impresora térmica
             PrintContent(printerName, content);
         }
         private string GetDefaultPrinterName()
@@ -92,89 +94,18 @@ namespace WpfApp1.designs
                     e.Graphics.DrawString(content, font, Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top);
                 }
             };
-
             printDocument.Print();
         }
 
-        //private void PrintContent(string printerName, string content)
-        //{
-        //    IntPtr printerHandle;
-        //    DOCINFOA docInfo = new DOCINFOA();
-        //    bool success;
-
-        //    docInfo.pDocName = "Factura POS";
-        //    docInfo.pDataType = "RAW";
-
-        //    success = OpenPrinter(printerName.Normalize(), out printerHandle, IntPtr.Zero);
-        //    if (!success)
-        //    {
-        //        MessageBox.Show("No se pudo abrir la impresora.");
-        //        return;
-        //    }
-
-        //    success = StartDocPrinter(printerHandle, 1, docInfo);
-        //    if (!success)
-        //    {
-        //        MessageBox.Show("No se pudo iniciar el documento de impresión.");
-        //        ClosePrinter(printerHandle);
-        //        return;
-        //    }
-
-        //    success = StartPagePrinter(printerHandle);
-        //    if (!success)
-        //    {
-        //        MessageBox.Show("No se pudo iniciar la página de impresión.");
-        //        EndDocPrinter(printerHandle);
-        //        ClosePrinter(printerHandle);
-        //        return;
-        //    }
-
-        //    int dwWritten;
-        //    IntPtr ptr = Marshal.StringToCoTaskMemAnsi(content);
-        //    success = WritePrinter(printerHandle, ptr, content.Length, out dwWritten);
-        //    if (!success)
-        //    {
-        //        MessageBox.Show("Error al escribir en la impresora.");
-        //        EndPagePrinter(printerHandle);
-        //        EndDocPrinter(printerHandle);
-        //        ClosePrinter(printerHandle);
-        //        return;
-        //    }
-
-        //    success = EndPagePrinter(printerHandle);
-        //    if (!success)
-        //    {
-        //        MessageBox.Show("No se pudo finalizar la página de impresión.");
-        //        EndDocPrinter(printerHandle);
-        //        ClosePrinter(printerHandle);
-        //        return;
-        //    }
-
-        //    success = EndDocPrinter(printerHandle);
-        //    if (!success)
-        //    {
-        //        MessageBox.Show("No se pudo finalizar el documento de impresión.");
-        //        ClosePrinter(printerHandle);
-        //        return;
-        //    }
-
-        //    success = ClosePrinter(printerHandle);
-        //    if (!success)
-        //    {
-        //        MessageBox.Show("No se pudo cerrar la impresora.");
-        //        return;
-        //    }
-
-        //    Marshal.FreeCoTaskMem(ptr);
-        //}
+        #endregion
     }
 
     public class Item
     {
-        public string Nombre { get; set; }
-        public int Cantidad { get; set; }
-        public decimal PrecioUnitario { get; set; }
-        public decimal Subtotal { get; set; }
+        public string product { get; set; }
+        public int quantity { get; set; }
+        public int cost { get; set; }
+        public int subtotal { get; set; }
     }
 
     public class FacturaViewModel

@@ -155,16 +155,13 @@ namespace WpfApp1.designs
                     GarbageCollector(i);
                     Clean();
                     MessageBox.Show("Factura creada con éxito", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                    ticket_pos tp = new ticket_pos();
+                    tp.Show();
                 }
                 else
                 {
                     MessageBox.Show("Debe tener productos en la lista", "ALERTA", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-            }
-            else if(e.Key == Key.P)
-            {
-                ticket_pos tp = new ticket_pos();
-                tp.Show();
             }
         }
 
@@ -206,7 +203,6 @@ namespace WpfApp1.designs
                     }
                 }
             }
-            MessageBox.Show(exist.ToString());
             if (exist)
             {
                 dgInvoice.ItemsSource = null;
