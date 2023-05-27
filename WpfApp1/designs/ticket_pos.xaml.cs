@@ -8,28 +8,14 @@ using WpfApp1.actions;
 
 namespace WpfApp1.designs
 {
-    /// <summary>
-    /// Lógica de interacción para ticket_pos.xaml
-    /// </summary>
     public partial class ticket_pos : Window
     {
         public ticket_pos()
         {
             InitializeComponent();
-
-            // Llenar datos de ejemplo
-            //var items = new List<Item>
-            //{
-            //    new Item { Nombre = "Producto 1", Cantidad = 2, PrecioUnitario = 10, Subtotal = 20 },
-            //    new Item { Nombre = "Producto 2", Cantidad = 1, PrecioUnitario = 15, Subtotal = 15 },
-            //    new Item { Nombre = "Producto 3", Cantidad = 3, PrecioUnitario = 5, Subtotal = 15 },
-            //    new Item { Nombre = "Producto 4", Cantidad = 4, PrecioUnitario = 8, Subtotal = 32 }
-            //};
-            //DataContext =  new FacturaViewModel { Items = i.PrintPOS(Environment.UserName.ToString()), Total = 82 };
             invoice i = new invoice();
-            var data = i.PrintPOS(Environment.UserName.ToString());
+            var data = i.PrintPOS(Environment.UserName.ToString(), form_invoice.type_document);
             DataContext = new FacturaViewModel { Items = data, Total = 82 };
-            
         }
 
         #region

@@ -26,7 +26,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="+" FontSize="25" Click="AgregarPestaña_Click" Padding="-3,-9,-4,-5" Width="32" Margin="5,3,5,4" Background="Green"/>
+            <Button Content="+" FontSize="25" Click="AgregarPestaña_Click" ToolTip="Abrir una pestaña nueva" Padding="-3,-9,-4,-5" Width="32" Margin="5,3,5,4" Background="#17a14b" Foreground="White"/>
         </StackPanel>
         <TabControl x:Name="tabControl" SelectionChanged="TabControl_SelectionChanged" Margin="0,5,0,10" Grid.Row="1" ItemContainerStyle="{StaticResource TabItemStyle}"/>
     </Grid>

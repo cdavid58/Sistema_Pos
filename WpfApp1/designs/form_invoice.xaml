@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local1="clr-namespace:WpfApp1.forms"
       Title="form_invoice"
-      Background="#fff" Height="821">
+      Background="#fff" Height="794">
     <Page.Resources>
         <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
@@ -55,8 +55,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="89"/>
-            <RowDefinition  Height="Auto" MinHeight="442"/>
-            <RowDefinition  Height="161"/>
+            <RowDefinition  Height="Auto" MinHeight="375"/>
+            <RowDefinition  Height="275"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Height="105" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid.RowDefinitions>
@@ -85,13 +85,13 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical" Width="145">
                                         <Label Content="Items" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox x:Name="txtItems" Text="0" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                        <TextBox x:Name="txtItems" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="30"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="200">
                                         <Label Content="Existencia" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox x:Name="txtExist" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                        <TextBox x:Name="txtExist" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,0,10" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" IsEnabled="False" Height="30" HorizontalAlignment="Left" Width="180"/>
 
@@ -121,27 +121,27 @@
                             <Grid Grid.Row="0">
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical" Width="374">
-                                        <Label Content="Fecha" HorizontalContentAlignment="Center" FontSize="20" Height="34"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Código del producto" HorizontalContentAlignment="Left"
+                                        <Label Content="Fecha y Hora" HorizontalContentAlignment="Center" FontSize="20" Height="34"/>
+                                        <TextBox x:Name="txtDateTime" TextWrapping="Wrap" ToolTip="Fecha y hora actual" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" IsEnabled="False" Height="30"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <Label Content="Factura N°" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" x:Name="txtNumberInvoice" ToolTip="Código del producto" Margin="10,0,0,0" HorizontalContentAlignment="Right"
+                                        <TextBox TextWrapping="Wrap" x:Name="txtNumberInvoice" ToolTip="Número de la factura" Margin="10,0,0,0" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Width="272" IsEnabled="False" Height="30"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <Label Content="Total Base" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox x:Name="txtTotalBase" TextWrapping="Wrap" ToolTip="Código del producto" Text="0" Margin="10,0,0,0" HorizontalContentAlignment="Right"
+                                        <TextBox x:Name="txtTotalBase" TextWrapping="Wrap" ToolTip="Sumatoria de la base de la factura" Text="0" Margin="10,0,0,0" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Width="180" IsEnabled="False" Height="30" VerticalContentAlignment="Top"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
                         </Grid>
-                    </StackPanel> 
+                    </StackPanel>
                 </Grid>
             </StackPanel>
         </Grid>
@@ -175,13 +175,13 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="200">
                                         <Label Content="Cantidad" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox x:Name="txtQuantity" TextWrapping="Wrap" ToolTip="Código del producto" Margin="10,0,0,0" HorizontalContentAlignment="Left"
+                                        <TextBox x:Name="txtQuantity" TextWrapping="Wrap" ToolTip="Cantidad de producto" Margin="10,0,0,0" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0" GotFocus="TxtQuantity_GotFocus"
                                          FontSize="{Binding ElementName=txtItems, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" KeyDown="TxtQuantity_KeyDown" Height="39"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="106" Height="79" VerticalAlignment="Bottom" Margin="10,0,0,16">
                                         <Label Content="Precio" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox x:Name="txtTypePrice" Text="1" TextWrapping="Wrap" ToolTip="Product code" HorizontalContentAlignment="Left"
+                                        <TextBox x:Name="txtTypePrice" Text="1" TextWrapping="Wrap" ToolTip="Tipo de precio" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Height="39" KeyDown="TxtTypePrice_KeyDown" GotFocus="TxtTypePrice_GotFocus"/>
                                     </StackPanel>
@@ -209,7 +209,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical" Width="502" Margin="0,0,0,-11" Height="84" VerticalAlignment="Top">
                                         <Label Content="Producto" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20" Height="33" HorizontalAlignment="Left" Width="492"/>
-                                        <TextBox x:Name="txtProduct" TextWrapping="Wrap" ToolTip="Product code" HorizontalContentAlignment="Left"
+                                        <TextBox x:Name="txtProduct" TextWrapping="Wrap" ToolTip="Nombre del producto" HorizontalContentAlignment="Left"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" IsEnabled="False" HorizontalAlignment="Right" Width="482" Height="39"/>
                                     </StackPanel>
@@ -217,34 +217,34 @@
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Orientation="Vertical" Height="120" Width="155">
                                                 <Grid Width="164" Height="25" Margin="0,0,-9,0">
-                                                    <TextBox x:Name="price_1" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,0" HorizontalContentAlignment="Right"
+                                                    <TextBox x:Name="price_1" TextWrapping="Wrap" ToolTip="Precio 1" Margin="0,0,10,0" HorizontalContentAlignment="Right"
                                                      BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="23" Margin="0,0,-9,0">
-                                                    <TextBox x:Name="price_2" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,0" HorizontalContentAlignment="Right"
+                                                    <TextBox x:Name="price_2" TextWrapping="Wrap" ToolTip="Precio 2" Margin="0,0,10,0" HorizontalContentAlignment="Right"
                                                      BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="22" Margin="0,0,-9,0">
-                                                    <TextBox x:Name="price_3" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,1" HorizontalContentAlignment="Right"
+                                                    <TextBox x:Name="price_3" TextWrapping="Wrap" ToolTip="Precio 3" Margin="0,0,10,1" HorizontalContentAlignment="Right"
                                                      BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Bottom"/>
                                                 </Grid>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Height="120" Width="155">
                                                 <Grid Width="164" Height="25" Margin="0,0,-9,0">
-                                                    <TextBox x:Name="price_4" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,0" HorizontalContentAlignment="Right"
+                                                    <TextBox x:Name="price_4" TextWrapping="Wrap" ToolTip="Precio 4" Margin="0,0,10,0" HorizontalContentAlignment="Right"
                                                      BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="23" Margin="0,0,-9,0">
-                                                    <TextBox x:Name="price_5" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,0" HorizontalContentAlignment="Right"
+                                                    <TextBox x:Name="price_5" TextWrapping="Wrap" ToolTip="Precio 5" Margin="0,0,10,0" HorizontalContentAlignment="Right"
                                                      BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                                 </Grid>
                                                 <Grid Width="164" Height="22" Margin="0,0,-9,0">
-                                                    <TextBox x:Name="price_6" TextWrapping="Wrap" ToolTip="Product code" Margin="0,0,10,1" HorizontalContentAlignment="Right"
+                                                    <TextBox x:Name="price_6" TextWrapping="Wrap" ToolTip="Precio 6" Margin="0,0,10,1" HorizontalContentAlignment="Right"
                                                      BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Bottom"/>
                                                 </Grid>
@@ -284,8 +284,8 @@
                             <Grid Grid.Row="0">
                                 <DataGrid x:Name="dgInvoice" AutoGenerateColumns="False" FontSize="20" FontFamily="Arial" 
                                           CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" 
-                                          AlternatingRowBackground="#F6F6F6" GridLinesVisibility="None" Margin="0,0,0,-422" HorizontalAlignment="Left" Width="1480"
-                                >
+                                          AlternatingRowBackground="#F6F6F6" GridLinesVisibility="None" Margin="0,0,0,-344" HorizontalAlignment="Left" Width="1480"
+                                          CanUserAddRows="False" IsReadOnly="True">
                                     <DataGrid.Resources>
                                         <Style TargetType="{x:Type DataGridColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -307,22 +307,22 @@
                                         </Style>
                                     </DataGrid.Resources>
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Código" Binding="{Binding code}" Width="190">
+                                        <DataGridTextColumn Header="Código" Binding="{Binding code}" Width="150">
                                             <DataGridTextColumn.CellStyle>
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="Productos" Binding="{Binding product}" Width="400">
+                                        <DataGridTextColumn Header="Productos" Binding="{Binding product}" Width="350">
                                             <DataGridTextColumn.CellStyle>
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="Base" Binding="{Binding cost}" Width="170">
+                                        <DataGridTextColumn Header="Base" Binding="{Binding cost}" Width="150">
                                             <DataGridTextColumn.CellStyle>
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="Cantidad" Binding="{Binding quantity}" Width="170">
+                                        <DataGridTextColumn Header="Cantidad" Binding="{Binding quantity}" Width="150">
                                             <DataGridTextColumn.CellStyle>
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
@@ -342,11 +342,20 @@
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="Subtotal" Binding="{Binding subtotal}" Width="210">
+                                        <DataGridTextColumn Header="Subtotal" Binding="{Binding subtotal}" Width="180">
                                             <DataGridTextColumn.CellStyle>
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
+                                        <DataGridTemplateColumn Header="Accion" Width="200">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <Button x:Name="btntDelete" Click="BtntDelete_Click" Content="Eliminar" Margin="5" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -365,15 +374,27 @@
                 <ColumnDefinition Width="auto" MinWidth="604"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal"  Grid.Column="0" Height="73" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid>
+                <Grid Margin="0,0,0,-67" Width="1180">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="51*"/>
+                        <RowDefinition Height="51*"/>
+                    </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                            <Button x:Name="btnUltCopy" Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia" Width="100" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnUltCopy_Click"/>
-                            <Button x:Name="btnClient" Style="{StaticResource RoundedButtonStyle}" Content="Clientes" Width="100" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnClient_Click"/>
+                            <Button x:Name="btnUltCopy" ToolTip="Obtener copia de la última factura generada en este punto" Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia" Width="100" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnUltCopy_Click"/>
+                            <Button x:Name="btnClient" ToolTip="Abrir la lista de clientes" Style="{StaticResource RoundedButtonStyle}" Content="Clientes" Width="100" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnClient_Click"/>
                             <Button Style="{StaticResource RoundedButtonStyle}" Content="Ver Electónica" Width="150" FontSize="18" FontWeight="Bold" Margin="5"/>
-                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Electrónica" Width="150" FontSize="18" FontWeight="Bold" Margin="5"/>
+                            <Button x:Name="btnPrice" Style="{StaticResource RoundedButtonStyle}" Content="Cotizaciòn" Width="150" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnPrice_Click"/>
                             <Label Content="Nombre del cliente:" Width="196" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10,5,5,5"/>
                             <Label Content="Consumidor Final" x:Name="lbClient" Width="400" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold" Margin="20,5,5,5"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                            <Button ToolTip="Obtener copia de la última factura generada en este punto" Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia POS" Width="149" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnUltCopy_Click"/>
+                            <Button ToolTip="Abrir la lista de clientes" Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia Elec" Width="145" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnClient_Click"/>
+                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia Cot" Width="150" FontSize="18" FontWeight="Bold" Margin="5"/>
+                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Salir" Width="103" FontSize="18" FontWeight="Bold" Margin="5"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

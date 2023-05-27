@@ -15,10 +15,21 @@ namespace WpfApp1.actions
         public bool exists_client = false;
 
 
-        public List<Item> PrintPOS(string name)
+        public void ReturnProduct(string code)
+        {
+            string query = $"CALL ReturnProduct({code});";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, c.Conect());
+                cmd.ExecuteNonQuery();
+            }catch(Exception ex){}
+        }
+
+
+        public List<Item> PrintPOS(string name,int type_document)
         {
             var invoice = new List<Item>();
-            string query = $"CALL GetLastInvoice('{name}')";
+            string query = $"CALL GetLastInvoice('{name}',{type_document})";
             MySqlCommand cmd = new MySqlCommand(query, c.Conect());
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -40,7 +51,7 @@ namespace WpfApp1.actions
         public bool CreateInvoice(HeaderInvoice hi)
         {
             bool result = false;
-            string query = $"call Create_Invoice({hi.number},{hi.user},'{hi.terminal}',{hi.payment_form},{hi.payment_method},'{hi.notes}',{hi.client_id})";
+            string query = $"call Create_Invoice({hi.number},{hi.user},'{hi.terminal}',{hi.payment_form},{hi.payment_method},'{hi.notes}',{hi.client_id},{hi.type_document})";
             MySqlCommand cmd = new MySqlCommand(query, c.Conect());
             cmd.ExecuteNonQuery();
             result = true;
@@ -151,6 +162,7 @@ namespace WpfApp1.actions
         public int payment_method { get; set; }
         public string notes { get; set; }
         public int client_id { get; set; }
+        public int type_document { get; set; }
     }
 
     class DetailsInvoice
