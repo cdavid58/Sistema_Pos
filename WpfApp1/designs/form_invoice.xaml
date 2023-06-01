@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local1="clr-namespace:WpfApp1.forms"
       Title="form_invoice"
+      
       Background="#fff" Height="794">
     <Page.Resources>
         <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
@@ -394,7 +395,7 @@
                             <Button ToolTip="Obtener copia de la última factura generada en este punto" Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia POS" Width="149" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnUltCopy_Click"/>
                             <Button ToolTip="Abrir la lista de clientes" Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia Elec" Width="145" FontSize="18" FontWeight="Bold" Margin="5" Click="BtnClient_Click"/>
                             <Button Style="{StaticResource RoundedButtonStyle}" Content="Ult Copia Cot" Width="150" FontSize="18" FontWeight="Bold" Margin="5"/>
-                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Salir" Width="103" FontSize="18" FontWeight="Bold" Margin="5"/>
+                            <Button Style="{StaticResource RoundedButtonStyle}" Content="Salir" x:Name="exit" Width="103" FontSize="18" FontWeight="Bold" Margin="5" Click="Exit_Click"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

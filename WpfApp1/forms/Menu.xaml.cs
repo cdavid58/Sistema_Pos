@@ -70,7 +70,7 @@ namespace WpfApp1.forms
                     Hide();
                     break;
                 case 2:
-                    Compras shop = new Compras();
+                    shopping shop = new shopping();
                     shop.Show();
                     Hide();
                     break;
@@ -112,7 +112,7 @@ namespace WpfApp1.forms
             }
             else if(e.Key == Key.F2)
             {
-                Compras shop = new Compras();
+                shopping shop = new shopping();
                 shop.Show();
                 Hide();
             }

@@ -1,5 +1,12 @@
-﻿using System;
+﻿using iText.IO.Image;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,6 +15,11 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using WpfApp1.actions;
 using WpfApp1.modals;
+using Image = iText.Layout.Element.Image;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace WpfApp1.designs
 {
@@ -34,6 +46,15 @@ namespace WpfApp1.designs
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
+            Loaded += form_invoice_Loaded;
+        }
+
+        private async void form_invoice_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(async () =>
+            {
+                await Send_Invoice_Electronic();
+            });
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -439,7 +460,103 @@ namespace WpfApp1.designs
 
         private void BtnPrice_Click(object sender, RoutedEventArgs e)
         {
+            if (lbClient.Content.ToString() != "Consumidor Final")
+            {
+                invoice order = new invoice();
+                var data_client = client_list;
+                string projectDirectory = Directory.GetCurrentDirectory();
+                var logoPath = System.IO.Path.Combine(projectDirectory, "image", "logo.png");
+                var logo = new Image(ImageDataFactory.Create(logoPath));
 
+                float mediaCartaWidth = 800;
+                float mediaCartaHeight = 396;
+                var pageSize = new PageSize(mediaCartaWidth, mediaCartaHeight);
+                pageSize.Rotate();
+                var filePath = @"C:\Users\Desarrollo2\Desktop\Cotizaciones\factura.pdf";
+                var writer = new PdfWriter(filePath);
+                var pdf = new PdfDocument(writer);
+                pdf.SetDefaultPageSize(pageSize);
+                var document = new Document(pdf, pageSize);
+
+                var headerTable = new Table(new float[] { 2, 1, 1 });
+                headerTable.SetWidth(UnitValue.CreatePercentValue(100));
+
+                logo.ScaleToFit(100, 100);
+                var logoCell = new Cell().Add(logo);
+                headerTable.AddCell(logoCell);
+
+                var razonSocial = new Paragraph("Theriosoft s.a.s")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var nit = new Paragraph("NIT: 900541566")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var phone = new Paragraph("Teléfono: 3145080696")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var email = new Paragraph("Email: theriosoft@gmail.com")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var resolucion = new Paragraph("Resolución: 18764009127371")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var client_name = new Paragraph($"Nombre: {data_client["name"].ToString()}")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var client_phone = new Paragraph($"Teléfono: {data_client["phone"].ToString()}")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var client_nit = new Paragraph($"Documento I: {data_client["documentI"].ToString()}")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                var client_address = new Paragraph($"Dirección: : {data_client["address"].ToString()}")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+
+                headerTable.AddCell(new Cell().Add(razonSocial).Add(nit).Add(phone).Add(email).Add(resolucion));
+                headerTable.AddCell(new Cell().Add(client_nit).Add(client_name).Add(client_phone).Add(client_address));
+
+                document.Add(headerTable);
+
+                var detalleFactura = new Paragraph($"Detalle de la cotización - N° {order.GetConsecutivePrice()} -  Fecha:{DateTime.Now.ToString("dd/MM/yyyy")}");
+                detalleFactura.SetBold();
+                detalleFactura.SetFontSize(16);
+                document.Add(detalleFactura);
+
+                var tablaDetalle = new Table(UnitValue.CreatePercentArray(new float[] { 25, 25, 25, 25 }));
+                tablaDetalle.SetWidth(UnitValue.CreatePercentValue(100));
+                tablaDetalle.AddCell("Producto");
+                tablaDetalle.AddCell("Cantidad");
+                tablaDetalle.AddCell("IVA");
+                tablaDetalle.AddCell("Subtotal");
+                foreach (var item in data)
+                {
+                    Console.WriteLine(item.code);
+                    var quantity_cell = new Cell().SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).Add(new Paragraph(item.quantity.ToString()));
+                    var tax_value_cell = new Cell().SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).Add(new Paragraph(item.tax_value.ToString()));
+                    var subtotal_cell = new Cell().SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).Add(new Paragraph(item.subtotal.ToString()));
+
+                    tablaDetalle.AddCell(item.product);
+                    tablaDetalle.AddCell(quantity_cell);
+                    tablaDetalle.AddCell(tax_value_cell);
+                    tablaDetalle.AddCell(subtotal_cell);
+                }
+
+                document.Add(tablaDetalle);
+
+                var piePagina = new Paragraph("Este documento no es una factura válida, solo es una cotización.");
+                piePagina.SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);
+                document.Add(piePagina);
+
+                document.Close();
+
+                Console.WriteLine("La factura se ha generado exitosamente.");
+
+                System.Diagnostics.Process.Start(filePath);
+            }
+            else
+            {
+                MessageBox.Show("Debe elegir un cliente","Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void DeleteRowProductCode(string code)
@@ -467,7 +584,13 @@ namespace WpfApp1.designs
                 i.ReturnProduct(code);
             }
         }
-        
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            forms.Menu menu = new forms.Menu();
+            menu.Show();
+        }
+
         private void BtntDelete_Click(object sender, RoutedEventArgs e)
         {
             Button eliminarButton = (Button)sender;
@@ -505,6 +628,110 @@ namespace WpfApp1.designs
             else
                 return FindVisualParent<T>(parentObject);
         }
+
+        static async Task Send_Invoice_Electronic()
+        {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://theriosoft.com:8080/api/ubl2.1/invoice");
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Authorization", "Bearer fbcaff08718a4625e4885e76ac190d6cade6c001480ef6977994ece1829496f7");
+            #region
+            var payload = @"
+                {
+                    ""number"": 869,
+                    ""type_document_id"": 1,
+                    ""date"": ""2023-06-01"",
+                    ""time"": ""04:08:12"",
+                    ""resolution_number"": ""18760000001"",
+                    ""prefix"": ""SETP"",
+                    ""notes"": """",
+                    ""disable_confirmation_text"": true,
+                    ""establishment_name"": ""TORRE SOFTWARE"",
+                    ""establishment_address"": ""BRR LIMONAR MZ 6 CS 3 ET 1 PISO 2"",
+                    ""establishment_phone"": ""3226563672"",
+                    ""establishment_municipality"": 600,
+                    ""seze"": ""2021-2017"",
+                    ""foot_note"": """",
+                    ""customer"": {
+                        ""identification_number"": 800135582,
+                        ""dv"": 7,
+                        ""name"": ""FUNDACION ALEJANDRO LONDOÑO"",
+                        ""phone"": ""3105193539"",
+                        ""address"": ""CLL 4 NRO 33-90"",
+                        ""email"": ""sistemas@disuniversal.com"",
+                        ""merchant_registration"": ""0000000-00"",
+                        ""type_document_identification_id"": 6,
+                        ""type_organization_id"": 1,
+                        ""type_liability_id"": 117,
+                        ""municipality_id"": 822,
+                        ""type_regime_id"": 1
+                    },
+                    ""payment_form"": {
+                        ""payment_form_id"": 1,
+                        ""payment_method_id"": 10,
+                        ""payment_due_date"": ""2023-06-01"",
+                        ""duration_measure"": ""0""
+                    },
+                    ""legal_monetary_totals"": {
+                        ""line_extension_amount"": ""100"",
+                        ""tax_exclusive_amount"": ""100"",
+                        ""tax_inclusive_amount"": ""100"",
+                        ""payable_amount"": ""100""
+                    },
+                    ""tax_totals"": [
+                        {
+                            ""tax_id"": 1,
+                            ""tax_amount"": ""0"",
+                            ""percent"": ""0"",
+                            ""taxable_amount"": ""100""
+                        }
+                    ],
+                    ""invoice_lines"": [
+                        {
+                            ""ipo"": ""0"",
+                            ""unit_measure_id"": 70,
+                            ""invoiced_quantity"": ""1"",
+                            ""line_extension_amount"": ""100"",
+                            ""free_of_charge_indicator"": false,
+                            ""tax_totals"": [
+                                {
+                                    ""tax_id"": 1,
+                                    ""tax_amount"": ""0"",
+                                    ""taxable_amount"": ""100"",
+                                    ""percent"": ""0""
+                                }
+                            ],
+                            ""description"": ""COMISION POR SERVICIOS"",
+                            ""notes"": ""ESTA ES UNA PRUEBA DE NOTA DE DETALLE DE LINEA"",
+                            ""code"": ""COMISION"",
+                            ""type_item_identification_id"": 4,
+                            ""price_amount"": ""100"",
+                            ""base_quantity"": ""1""
+                        }
+                    ]
+                }";
+            #endregion
+            request.Content = new StringContent(payload, System.Text.Encoding.UTF8, "application/json");
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var respuesta = await response.Content.ReadAsStringAsync();
+            Dictionary<string, object> diccionario = JsonConvert.DeserializeObject<Dictionary<string, object>>(respuesta);
+            string message = diccionario["message"].ToString();
+            if (diccionario.ContainsKey("message"))
+            {
+                Console.WriteLine(message);
+            }
+            else
+            {
+                Console.WriteLine(respuesta);
+                foreach(var i in diccionario)
+                {
+                    Console.WriteLine(i.Key + " " + i.Value);
+                }
+            }
+        }
+
+
 
 
     }

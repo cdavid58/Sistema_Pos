@@ -1,10 +1,10 @@
 ﻿
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\App.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\designs\form_invoice.xaml;;
+FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\designs\ticket_pos.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\login.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\Caja.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\Clientes.xaml;;
-FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\Compras.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\Cotizacion.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\CtrlD.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\CXC.xaml;;
@@ -19,9 +19,9 @@ FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\SaldoCXC.x
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\SaldoCXP.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\TomaI.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\Modules\Usuarios.xaml;;
+FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\forms\shopping.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\modals\delete_product.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\modals\edit_product.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\modals\List_Client.xaml;;
 FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\modals\List_Product.xaml;;
-FC:\Users\Desarrollo2\Documents\project\WpfApp1\WpfApp1\designs\ticket_pos.xaml;;
 

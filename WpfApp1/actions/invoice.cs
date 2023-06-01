@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows;
 using WpfApp1.designs;
 
@@ -15,6 +14,20 @@ namespace WpfApp1.actions
         public bool exists_client = false;
 
 
+        public int GetConsecutivePrice()
+        {
+            int result = 0;
+            string query = "select number from consecutive where code = 5";
+            MySqlCommand cmd = new MySqlCommand(query, c.Conect());
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                result = reader.GetInt32("number");
+            }
+            return result;
+        }
+
+
         public void ReturnProduct(string code)
         {
             string query = $"CALL ReturnProduct({code});";
@@ -22,7 +35,7 @@ namespace WpfApp1.actions
             {
                 MySqlCommand cmd = new MySqlCommand(query, c.Conect());
                 cmd.ExecuteNonQuery();
-            }catch(Exception ex){}
+            }catch(Exception){}
         }
 
 

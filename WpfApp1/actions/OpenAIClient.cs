@@ -43,7 +43,6 @@ class OpenAIClient
         }
         else
         {
-            // Manejar el caso de respuesta no exitosa, por ejemplo, lanzar una excepción o devolver un valor predeterminado
             throw new Exception("La solicitud a OpenAI no fue exitosa.");
         }
     }
@@ -52,10 +51,10 @@ class Program
 {
     public static async Task RunOpenAI()
     {
-        var apiKey = "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";
+        var apiKey = "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";
         var model = "gpt-3.5-turbo";
-        var description = @"";
-        var conversation = @"";
+        var description = @"te llamas antonio reyes y eres desarrollador de software y ambisioso";
+        var conversation = @"Hola antonio cuentame que quieres hacer hoy?";
         var openaiClient = new OpenAIClient(apiKey);
         var generatedResponse = await openaiClient.GenerateChatCompletion(model, description, conversation);
         Console.WriteLine(generatedResponse);
