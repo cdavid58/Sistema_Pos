@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local1="clr-namespace:WpfApp1.forms"
         mc:Ignorable="d"
-        Title="shopping" Height="797.034" Width="1536.97">
+        Title="COMPRAS" Height="873.034" Width="1536.97" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
@@ -53,29 +53,27 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Margin="0,0,0,10">
+    <Grid Height="832" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="76"/>
             <RowDefinition Height="82"/>
             <RowDefinition Height="81"/>
             <RowDefinition MinHeight="106"/>
-            <RowDefinition Height="auto" MinHeight="84"/>
-            <RowDefinition Height="auto" MinHeight="73"/>
+            <RowDefinition Height="239"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Height="105" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="7*"/>
+                <RowDefinition Height="105"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" MinWidth="397"/>
                 <ColumnDefinition Width="auto" MinWidth="1143"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.RowSpan="2" Height="73" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal"  Grid.Column="0" Height="82" VerticalAlignment="Top">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <!-- ... Otros elementos de fila ... -->
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
                         <Grid>
@@ -86,23 +84,23 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical" Width="81">
                                         <Label Content="Items" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                        <TextBox x:Name="txtItems" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="30"/>
+                                         FontSize="{Binding ElementName=txtNDocument, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="40"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="114">
                                         <Label Content="Existencia" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <TextBox x:Name="txtExist" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0" Text="0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtNDocument}" IsEnabled="False" Height="39"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical"/>
                                     <StackPanel Orientation="Vertical" Width="114">
                                         <Label Content="Ventas 1" HorizontalContentAlignment="Center" FontSize="20"/>
                                         <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0" Text="0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtNDocument}" IsEnabled="False" Height="38"/>
 
                                     </StackPanel>
                                 </StackPanel>
@@ -125,21 +123,21 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical" Width="374">
                                         <Label Content="Fecha" HorizontalContentAlignment="Center" FontSize="20" Height="34"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Fecha y hora actual" HorizontalContentAlignment="Left"
+                                        <TextBox x:Name="txtDateToday" TextWrapping="Wrap" ToolTip="Fecha y hora actual" HorizontalContentAlignment="Center"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Height="40"/>
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtNDocument}" Height="40"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="204">
-                                        <Label Content="N° Factura" HorizontalContentAlignment="Center" FontSize="20" Height="34"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Fecha y hora actual" HorizontalContentAlignment="Left"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0" Margin="10,0,0,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" Height="40"/>
+                                    <StackPanel Orientation="Vertical" Width="307">
+                                        <Label Content="Proveedor" HorizontalContentAlignment="Center" FontSize="20" Height="34"/>
+                                        <TextBox x:Name="txtSupplier" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0" KeyDown="TxtSupplier_KeyDown"
+                                         FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" Height="39"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="204">
                                         <Label Content="N° Documento" HorizontalContentAlignment="Center" FontSize="20" Height="34"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Fecha y hora actual" HorizontalContentAlignment="Left"
+                                        <TextBox TextWrapping="Wrap" x:Name="txtNDocument" Text="0" ToolTip="Fecha y hora actual" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0" Margin="10,0,0,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" IsEnabled="False" Height="40"/>
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtNDocument}" IsEnabled="False" Height="40"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
@@ -160,7 +158,6 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <!-- ... Otros elementos de fila ... -->
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
                         <Grid>
@@ -169,31 +166,31 @@
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <StackPanel Orientation="Horizontal">
-                                    <StackPanel Orientation="Vertical" Width="160">
-                                        <Label Content="Proveedor" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="30"/>
+                                    <StackPanel Orientation="Vertical" Width="259">
+                                        <Label Content="N° Factura" HorizontalContentAlignment="Center" FontSize="20"/>
+                                        <TextBox x:Name="txtInvoice" TextWrapping="Wrap" ToolTip="Fecha y hora actual" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0" Margin="10,0,0,0" IsEnabled="False"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtDateToday}" Height="33" KeyDown="TxtInvoice_KeyDown"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="323">
                                         <Label Content="Nombre" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <TextBox x:Name="txtNameSupplier" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Left"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtDateToday}" IsEnabled="False" Height="33"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="429">
                                         <Label Content="Direccion" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <TextBox x:Name="txtAddress" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Left"
+                                            BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="33"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="269">
                                         <Label Content="Direccion" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <TextBox x:Name="txtPhoneSupplier" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Left"
+                                            BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="33"/>
 
                                     </StackPanel>
                                 </StackPanel>
@@ -226,77 +223,77 @@
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical" Width="160">
                                         <Label Content="Código" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="30"/>
+                                        <TextBox x:Name="txtCodeProduct" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0" KeyDown="TxtCodeProduct_KeyDown"
+                                         FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" Height="33"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="114">
                                         <Label Content="Cantidad" HorizontalContentAlignment="Center" FontSize="20"/>
                                         <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                         BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0" x:Name="txtQuanty" KeyDown="TxtTax_KeyDown"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" Height="33"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="279">
-                                        <Label Content="Articulo" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <Label Content="Producto" HorizontalContentAlignment="Center" FontSize="20"/>
+                                        <TextBox x:Name="txtProduct" TextWrapping="Wrap" ToolTip="Nombre del producto" Margin="10,2,9,10" HorizontalContentAlignment="Right"
+                                            BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="33"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="149">
                                         <Label Content="Base" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <TextBox x:Name="txtBase" TextWrapping="Wrap" ToolTip="Base o costo del producto" Margin="10,2,9,10" HorizontalContentAlignment="Right"
+                                            BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0" KeyDown="TxtTax_KeyDown" Text="0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" Height="33"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="164">
-                                        <Label Content="Costo" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <Label Content="Ipoc" HorizontalContentAlignment="Center" FontSize="20"/>
+                                        <TextBox x:Name="txtIPOC" TextWrapping="Wrap" ToolTip="Valor del Impuesto al consumo" Margin="10,2,9,10" HorizontalContentAlignment="Right"
+                                            BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0" KeyDown="TxtTax_KeyDown" Text="0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" Height="33"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Width="93" Margin="0,0,10,0">
                                         <Label Content="IVA" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                        <TextBox x:Name="txtTax" KeyDown="TxtTax_KeyDown" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
+                                            BorderBrush="Gray" BorderThickness="2" Padding="0,-5,0,0" Text="0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" Height="33"/>
 
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Height="79" VerticalAlignment="Top">
                                         <StackPanel Orientation="Vertical" Height="69" Width="155" VerticalAlignment="top">
                                             <Grid Width="164" Height="25" Margin="0,0,-9,0">
-                                                <TextBox x:Name="price_1" TextWrapping="Wrap" ToolTip="Precio 1" Margin="0,0,10,0" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
+                                                <TextBox x:Name="price_1" KeyDown="TxtTax_KeyDown" TextWrapping="Wrap" ToolTip="Precio 1" Margin="0,0,10,0" HorizontalContentAlignment="Right"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" Text="0"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                             </Grid>
                                             <Grid Width="164" Height="23" Margin="0,0,-9,0">
-                                                <TextBox x:Name="price_2" TextWrapping="Wrap" ToolTip="Precio 2" Margin="0,0,10,0" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
+                                                <TextBox x:Name="price_2" KeyDown="TxtTax_KeyDown" TextWrapping="Wrap" ToolTip="Precio 2" Margin="0,0,10,0" HorizontalContentAlignment="Right"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" Text="0"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                             </Grid>
                                             <Grid Width="164" Height="22" Margin="0,0,-9,0">
                                                 <TextBox x:Name="price_3" TextWrapping="Wrap" ToolTip="Precio 3" Margin="0,0,10,1" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" KeyDown="TxtTax_KeyDown" Text="0"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Bottom"/>
                                             </Grid>
                                         </StackPanel>
                                         <StackPanel Orientation="Vertical" Height="69" Width="155" VerticalAlignment="top">
                                             <Grid Width="164" Height="25" Margin="0,0,-9,0">
                                                 <TextBox x:Name="price_4" TextWrapping="Wrap" ToolTip="Precio 4" Margin="0,0,10,0" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" KeyDown="TxtTax_KeyDown" Text="0"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                             </Grid>
                                             <Grid Width="164" Height="23" Margin="0,0,-9,0">
                                                 <TextBox x:Name="price_5" TextWrapping="Wrap" ToolTip="Precio 5" Margin="0,0,10,0" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" KeyDown="TxtTax_KeyDown" Text="0"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Top"/>
                                             </Grid>
                                             <Grid Width="164" Height="22" Margin="0,0,-9,0">
                                                 <TextBox x:Name="price_6" TextWrapping="Wrap" ToolTip="Precio 6" Margin="0,0,10,1" HorizontalContentAlignment="Right"
-                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" IsEnabled="false"
+                                                     BorderBrush="Gray" BorderThickness="2" Padding="5,0" KeyDown="TxtTax_KeyDown" Text="0"
                                                      FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=price_1}" Height="20" VerticalAlignment="Bottom"/>
                                             </Grid>
                                         </StackPanel>
@@ -309,7 +306,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="3" HorizontalAlignment="Left" Width="1519" Margin="10,0,0,0">
+        <Grid Grid.Row="3" HorizontalAlignment="Left" Height="auto" Width="1519" Margin="10,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -327,15 +324,15 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </StackPanel.RenderTransform>
-                        <Grid Width="1269" Margin="0,0,0,-10">
+                        <Grid Width="1269" Margin="0,0,0,1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <DataGrid x:Name="dgInvoice" AutoGenerateColumns="False" FontSize="20" FontFamily="Arial" 
                                           CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" 
-                                          AlternatingRowBackground="#F6F6F6" GridLinesVisibility="None" Margin="10,0,-12,-338"
-                                          CanUserAddRows="False" IsReadOnly="True" HorizontalAlignment="Left" Width="1271">
+                                          AlternatingRowBackground="#F6F6F6" GridLinesVisibility="None" Margin="10,0,-50,-322"
+                                          CanUserAddRows="False" IsReadOnly="True" HorizontalAlignment="Left" Width="1309">
                                     <DataGrid.Resources>
                                         <Style TargetType="{x:Type DataGridColumnHeader}">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -397,15 +394,7 @@
                                                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
                                             </DataGridTextColumn.CellStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTemplateColumn Header="Accion" Width="200">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                        <Button x:Name="btntDelete" Content="Eliminar" Margin="5" />
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
+
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -415,209 +404,207 @@
             </StackPanel>
         </Grid>
 
+
+
         <Grid Grid.Row="4" Height="76" VerticalAlignment="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="7*"/>
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" MinWidth="800"/>
+                <ColumnDefinition Width="auto" MinWidth="1008"/>
+                <ColumnDefinition Width="auto" MinWidth="673"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.RowSpan="2" Height="73" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal"  Grid.Column="0" Height="204" VerticalAlignment="Top" Margin="0,0,0,-128">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <!-- ... Otros elementos de fila ... -->
+                        <RowDefinition Height="83"/>
+                        <RowDefinition Height="91"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Grid.Row="0"  VerticalAlignment="Top" Height="84">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel Orientation="Vertical" Width="165">
-                                        <Label Content="Descuento" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Grid Width="161">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="74"/>
-                                                    <ColumnDefinition Width="40"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBox Grid.Column="0" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                <StackPanel Orientation="Vertical" Width="165">
+                                    <Label Content="Descuento" HorizontalContentAlignment="Center" FontSize="20"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="161">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="74"/>
+                                                <ColumnDefinition Width="40"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox x:Name="txtPercentage" Grid.Column="0" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
                                                  BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
                                                  FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" HorizontalAlignment="Left" Width="58"/>
-                                                <TextBox Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="0,2,-45,10" HorizontalContentAlignment="Right"
+                                            <TextBox Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="0,2,-45,10" HorizontalContentAlignment="Right"
                                                  BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
                                                  FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" HorizontalAlignment="Right" Width="86"/>
-                                            </Grid>
-                                        </StackPanel>
+                                        </Grid>
                                     </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="154">
-                                        <Label Content="Factura" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Width="154">
+                                    <Label Content="Factura" HorizontalContentAlignment="Center" FontSize="20"/>
+                                    <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
                                          BorderBrush="Gray" BorderThickness="2" Padding="5,0"
                                          FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
 
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="279">
-                                        <Label Content="Vendedor" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Grid Width="278">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="82"/>
-                                                    <ColumnDefinition Width="123"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBox Grid.Column="0" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Width="279">
+                                    <Label Content="Vendedor" HorizontalContentAlignment="Center" FontSize="20"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="278">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="82"/>
+                                                <ColumnDefinition Width="123"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox Grid.Column="0" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
                                                  BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
                                                  FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False"/>
-                                                <TextBox Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,-61,10" HorizontalContentAlignment="Right"
+                                            <TextBox Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,-61,10" HorizontalContentAlignment="Right"
                                                  BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
                                                  FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False"/>
-                                            </Grid>
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="161">
-                                        <Label Content="Base" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Grid Width="159">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="123"/>
-                                                </Grid.ColumnDefinitions>
-                                                <ComboBox Grid.Column="1" Text="0" ToolTip="Total de items agregados a la factura" Margin="10,2,-30,10" HorizontalContentAlignment="Right"
-                                                 BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
-                                                 FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False">
-                                                    <ComboBoxItem Content="Efectivo" />
-                                                    <ComboBoxItem Content="Crédito" />
-                                                    <ComboBoxItem Content="Transferencia" />
-                                                </ComboBox>
-                                            </Grid>
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="122">
-                                        <Label Content="Días vence" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
-
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="93" Margin="0,0,10,0">
-                                        <Label Content="IVA" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" x:Name="txtTax" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0" Text="0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" Height="30"/>
-
+                                        </Grid>
                                     </StackPanel>
 
                                 </StackPanel>
-                            </Grid>
+                                <StackPanel Orientation="Vertical" Width="161">
+                                    <Label Content="Form. Pago" HorizontalContentAlignment="Center" FontSize="20"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="159">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="123"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ComboBox x:Name="cmbFP" Text="0" ToolTip="Forma de pagos" Margin="10,2,-30,10" HorizontalContentAlignment="Right"
+                                                 BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
+                                                 FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" SelectionChanged="CmbFP_SelectionChanged" >
+                                                <ComboBoxItem Content="Efectivo" />
+                                                <ComboBoxItem Content="Crédito" />
+                                                <ComboBoxItem Content="Transferencia" />
+                                            </ComboBox>
+                                        </Grid>
+                                    </StackPanel>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Width="122">
+                                    <Label Content="Días vence" HorizontalContentAlignment="Center" FontSize="20"/>
+                                    <TextBox TextWrapping="Wrap" x:Name="txtDaysExpired" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
+                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Height="120" VerticalAlignment="Top" Margin="0,0,0,-28">
+                        <Grid Width="886" Height="120" VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" MinWidth="148"/>
+                                <ColumnDefinition Width="184"/>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="183"/>
+                                <ColumnDefinition Width="164.5"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Height="120" VerticalAlignment="Top" x:Name="new" MouseDown="New_MouseDown">
+                                <Image ToolTip="Agregar nueva compra" Source="/WpfApp1;component/image/new_page.png" Height="75" HorizontalAlignment="Center"/>
+                                <Label Content="Nuevo" HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="1" Height="120" VerticalAlignment="Top" x:Name="GetShopping" MouseDown="GetShopping_MouseDown">
+                                <Image ToolTip="Obtener copia de alguna compra realizada" Source="/WpfApp1;component/image/dupdo.png" Height="75" HorizontalAlignment="Center" />
+                                <Label Content="Obtener  Compra" HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="2" Height="120" VerticalAlignment="Top" x:Name="CancelShopping" MouseDown="CancelShopping_MouseDown">
+                                <Image ToolTip="Anular una compra realizada" Source="/WpfApp1;component/image/archivo.png" Height="75" HorizontalAlignment="Center" />
+                                <Label Content="Anular Compra" HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="3" Height="120" VerticalAlignment="Top">
+                                <Image ToolTip="Agregar nueva compra" Source="/WpfApp1;component/image/new_page.png" Height="75" HorizontalAlignment="Center" />
+                                <Label Content="Nuevo" HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="4" Height="120" VerticalAlignment="Top" x:Name="Exit" MouseDown="Exit_MouseDown">
+                                <Image ToolTip="Devolverse al menú" Source="/WpfApp1;component/image/salida.png" Height="75" HorizontalAlignment="Center" />
+                                <Label Content="Salir" HorizontalContentAlignment="Center" FontSize="20" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+
                         </Grid>
                     </StackPanel>
                 </Grid>
             </StackPanel>
-        </Grid>
 
-        <Grid Grid.Row="4" Height="76" VerticalAlignment="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="7*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" MinWidth="800"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.RowSpan="2" Height="73" VerticalAlignment="Top">
-                <Grid>
+            <StackPanel Orientation="Horizontal"  Grid.Column="1" Margin="0,0,0,-163" HorizontalAlignment="Left" Width="345">
+                <Grid Width="345">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <!-- ... Otros elementos de fila ... -->
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel Orientation="Vertical" Width="165">
-                                        <Label Content="Descuento" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Grid Width="161">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="74"/>
-                                                    <ColumnDefinition Width="40"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBox Grid.Column="0" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
-                                                 BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
-                                                 FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" HorizontalAlignment="Left" Width="58"/>
-                                                <TextBox Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="0,2,-45,10" HorizontalContentAlignment="Right"
-                                                 BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
-                                                 FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" HorizontalAlignment="Right" Width="86"/>
-                                            </Grid>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="154">
-                                        <Label Content="Factura" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
-
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="279">
-                                        <Label Content="Vendedor" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Grid Width="278">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="82"/>
-                                                    <ColumnDefinition Width="123"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBox Grid.Column="0" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
-                                                 BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
-                                                 FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False"/>
-                                                <TextBox Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,-61,10" HorizontalContentAlignment="Right"
-                                                 BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
-                                                 FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False"/>
-                                            </Grid>
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="161">
-                                        <Label Content="Base" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Grid Width="159">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="123"/>
-                                                </Grid.ColumnDefinitions>
-                                                <ComboBox Grid.Column="1" Text="0" ToolTip="Total de items agregados a la factura" Margin="10,2,-30,10" HorizontalContentAlignment="Right"
-                                                 BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
-                                                 FontSize="{Binding ElementName=txtTax, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}"        >
-                                                    <ComboBoxItem Content="Efectivo" />
-                                                    <ComboBoxItem Content="Crédito" />
-                                                    <ComboBoxItem Content="Transferencia" />
-                                                </ComboBox>
-                                            </Grid>
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="122">
-                                        <Label Content="Días vence" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Height="30"/>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical" Width="93" Margin="0,0,10,0">
-                                        <Label Content="IVA" HorizontalContentAlignment="Center" FontSize="20"/>
-                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,9,10" HorizontalContentAlignment="Right"
-                                            BorderBrush="Gray" BorderThickness="2" Padding="5,0" Text="0"
-                                            FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" Height="30"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Grid>
+                    <StackPanel Orientation="Vertical"  VerticalAlignment="Top" Margin="5">
+                        <Grid Margin="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="271">
+                                <Grid Width="271">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" MinWidth="50"/>
+                                        <ColumnDefinition Width="auto" MinWidth="777"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="SubTotal: " FontSize="20"/>
+                                    <TextBox x:Name="txtSubtotal" Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="5,5,0,6" HorizontalContentAlignment="Right"
+                                    BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
+                                    FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Width="165" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Margin="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="271">
+                                <Grid Width="271">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" MinWidth="50"/>
+                                        <ColumnDefinition Width="auto" MinWidth="777"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="IVA: " FontSize="20"/>
+                                    <TextBox x:Name="txtTaxes" Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="51,0,562,0" HorizontalContentAlignment="Right"
+                                    BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
+                                    FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Width="165" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Margin="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="271">
+                                <Grid Width="271">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" MinWidth="50"/>
+                                        <ColumnDefinition Width="auto" MinWidth="777"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="IPOC: " FontSize="20"/>
+                                    <TextBox x:Name="txtIPO" Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="35,1,571,6" HorizontalContentAlignment="Right"
+                                    BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
+                                    FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Width="165" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Margin="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="271">
+                                <Grid Width="271">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" MinWidth="81"/>
+                                        <ColumnDefinition Width="auto" MinWidth="767"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="DCTO: " FontSize="20"/>
+                                    <TextBox x:Name="txtDcto" Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="22,0,582,7" HorizontalContentAlignment="Right"
+                                    BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
+                                    FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Margin="0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="271">
+                                <Grid Width="271">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" MinWidth="50"/>
+                                        <ColumnDefinition Width="auto" MinWidth="777"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="Total: " FontSize="20"/>
+                                    <TextBox x:Name="txtTotal" Grid.Column="1" Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="35,1,571,6" HorizontalContentAlignment="Right"
+                                    BorderBrush="Gray" BorderThickness="2" Padding="5,0" Height="30"
+                                    FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtTax}" IsEnabled="False" Width="165" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
                         </Grid>
                     </StackPanel>
                 </Grid>
             </StackPanel>
-        </Grid>
 
+        </Grid>
 
 
     </Grid>

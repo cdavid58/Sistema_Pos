@@ -11,7 +11,9 @@ namespace WpfApp1.actions
 
         public MySqlDataAdapter adaptador()
         {
-            string query = "SELECT i.*, c.id FROM inventory AS i " +
+            string query = "SELECT i.id as 'ID', i.code AS 'CODIGO', i.product as 'PRODUCTO', i.cost as 'COSTO', i.price_1 as 'PRECIO 1'," +
+                "i.price_2 as 'PRECIO 2', i.price_3 as 'PRECIO 3', i.price_4 as 'PRECIO 4', i.price_5 as 'PRECIO 5', i.price_6 as 'PRECIO 6'," +
+                "i.quantity as 'CANTIDAD', i.tax as 'TAX',i.address as 'UBICACION',i.ipo as 'IPOC', c.id FROM inventory AS i " +
                 "INNER JOIN subcategory AS sb ON sb.id = i.subcategory_id " +
                 "INNER JOIN category AS c ON c.id = sb.category_id";
             MySqlCommand cmd = new MySqlCommand(query, c.Conect());
@@ -216,7 +218,7 @@ namespace WpfApp1.actions
 
     }
 
-    class Product: IEnumerable
+    public class Product: IEnumerable
     {
         public long code { get; set; }
         public string product { get; set; }

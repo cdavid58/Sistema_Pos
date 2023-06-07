@@ -75,6 +75,14 @@ namespace WpfApp1.forms.Modules
             return parent as TabItem;
         }
 
+        private void Salir_Click(object sender, RoutedEventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            Hide();
+        }
+
+
         private void CreateNewTab()
         {
             TabItem newTab = new TabItem();

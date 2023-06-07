@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfApp1.actions;
 using WpfApp1.designs;
-using WpfApp1.forms.Modules;
 
 namespace WpfApp1.modals
 {
@@ -27,7 +16,6 @@ namespace WpfApp1.modals
         {
             InitializeComponent();
             GetListInventory();
-            txtSearch.Focus();
         }
 
         private void TxtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -69,6 +57,7 @@ namespace WpfApp1.modals
                 var list_data = form_invoice.product_list;
                 list_data.Add("code", values[1].ToString());
                 list_data.Add("product", values[2].ToString());
+                list_data.Add("cost", values[3].ToString());
                 list_data.Add("price_1", values[4].ToString());
                 list_data.Add("price_2", values[5].ToString());
                 list_data.Add("price_3", values[6].ToString());
@@ -76,8 +65,9 @@ namespace WpfApp1.modals
                 list_data.Add("price_5", values[8].ToString());
                 list_data.Add("price_6", values[9].ToString());
                 list_data.Add("quantity", values[10].ToString());
-                list_data.Add("tax_value", values[16].ToString());
-                list_data.Add("address", values[22].ToString());
+                list_data.Add("tax", values[11].ToString());
+                list_data.Add("address", values[12].ToString());
+                list_data.Add("ipo", values[13].ToString());
                 Hide();
                 e.Handled = true;
             }
@@ -86,6 +76,11 @@ namespace WpfApp1.modals
                 Hide();
                 e.Handled = true;
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtSearch.Focus();
         }
     }
 }

@@ -13,6 +13,27 @@ namespace WpfApp1.actions
         private Invoice order;
         public bool exists_client = false;
 
+        public void Create_Wallet_Shopping(int amount, int duration,int invoice_id)
+        {
+            string query = $"CALL Create_Wallet({amount},{duration},{invoice_id})";
+            MySqlTransaction transaction = c.Conect().BeginTransaction();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, c.Conect(), transaction);
+                cmd.ExecuteNonQuery();
+                transaction.Commit();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                transaction.Rollback();
+            }
+            c.Conect().Close();
+        }
+
+
+
 
         public int GetConsecutivePrice()
         {
@@ -95,11 +116,11 @@ namespace WpfApp1.actions
             return number;
         }
 
-        public Invoice GetQueryInvoice(int quantity, long code, int type_price)
+        public Invoice GetQueryInvoice(int quantity, long code, int type_price,int type_operation)
         {
             order = new Invoice();
 
-            string query = $"CALL getCharacters({quantity}, {code}, {type_price})";
+            string query = $"CALL GetProducts({quantity}, {code}, {type_price},{type_operation})";
             MySqlCommand cmd = new MySqlCommand(query, c.Conect());
             MySqlDataReader reader = cmd.ExecuteReader();
 

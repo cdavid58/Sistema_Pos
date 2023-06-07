@@ -3,14 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.modals"
         xmlns:local1="clr-namespace:WpfApp1.forms"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
         Topmost="True"
         WindowStartupLocation="CenterScreen"
-        Title="edit_product" Height="559.64" Width="895.339">
+        Title="edit_product" Height="559.64" Width="895.339" Loaded="Window_Loaded">
     <Window.Resources>
         <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
         <Style x:Key="MyCellStyle" TargetType="DataGridCell">

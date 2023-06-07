@@ -19,7 +19,6 @@ using Image = iText.Layout.Element.Image;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
 
 namespace WpfApp1.designs
 {
@@ -192,6 +191,7 @@ namespace WpfApp1.designs
                             GarbageCollector(details_invoice);
                         }
                     }
+
                     GarbageCollector(di);
                     GarbageCollector(hi);
                     GarbageCollector(i);
@@ -263,7 +263,7 @@ namespace WpfApp1.designs
                         if (int.Parse(txtExist.Text) > 0)
                         {
                             invoice i = new invoice();
-                            var invoice = i.GetQueryInvoice(int.Parse(txtQuantity.Text), long.Parse(txtCode.Text), int.Parse(txtTypePrice.Text));
+                            var invoice = i.GetQueryInvoice(int.Parse(txtQuantity.Text), long.Parse(txtCode.Text), int.Parse(txtTypePrice.Text),1);
                             total_base += invoice.cost * int.Parse(txtQuantity.Text);
                             if (!ProductExist(int.Parse(txtQuantity.Text), invoice.code, invoice.cost))
                             {
@@ -353,7 +353,7 @@ namespace WpfApp1.designs
                     if (int.Parse(txtExist.Text) > 0)
                     {
                         invoice i = new invoice();
-                        var invoice = i.GetQueryInvoice(int.Parse(txtQuantity.Text), long.Parse(txtCode.Text), int.Parse(txtTypePrice.Text));
+                        var invoice = i.GetQueryInvoice(int.Parse(txtQuantity.Text), long.Parse(txtCode.Text), int.Parse(txtTypePrice.Text),1);
                         total_base += invoice.cost;
                         if (!ProductExist(int.Parse(txtQuantity.Text), invoice.code,invoice.cost))
                         {
@@ -584,12 +584,7 @@ namespace WpfApp1.designs
                 i.ReturnProduct(code);
             }
         }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            forms.Menu menu = new forms.Menu();
-            menu.Show();
-        }
+        
 
         private void BtntDelete_Click(object sender, RoutedEventArgs e)
         {

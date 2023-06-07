@@ -1,0 +1,73 @@
+﻿<Window x:Class="WpfApp1.modals.List_Supplier"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local1="clr-namespace:WpfApp1.forms"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Title="List_Supplier" Height="559.64" Width="895.339">
+    <Window.Resources>
+        <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <Style x:Key="MyCellStyle" TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FFA2A2A2">
+        <Grid Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="57*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Busca el proveedor por nombre" FontSize="16" HorizontalAlignment="Center" Grid.Column="1" Margin="90.932,0,100,0" />
+                        <TextBox TextChanged="TxtSearch_TextChanged" x:Name="txtSearch" TextWrapping="Wrap" ToolTip="Código del producto" Margin="43.932,36,33,-26" HorizontalContentAlignment="Left"
+                             FontSize="{Binding ElementName=txtCode, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" VerticalContentAlignment="Center" KeyDown="TxtSearch_KeyDown" Grid.Column="1">
+                            <TextBox.BorderBrush>
+                                <SolidColorBrush Color="Gray"/>
+                            </TextBox.BorderBrush>
+                            <TextBox.BorderThickness>
+                                <Thickness>2</Thickness>
+                            </TextBox.BorderThickness>
+                            <TextBox.Padding>
+                                <Thickness>5</Thickness>
+                            </TextBox.Padding>
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="5">
+                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid x:Name="MyDataGrid" IsReadOnly="True" AutoGenerateColumns="True" RenderTransformOrigin="0.242,5.028" Margin="-2,35,-2,-503" Grid.ColumnSpan="2" CellStyle="{StaticResource MyCellStyle}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <EventSetter Event="PreviewKeyDown" Handler="DataGridRow_PreviewKeyDown"/>
+                                </Style>
+                            </DataGrid.RowStyle>
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
