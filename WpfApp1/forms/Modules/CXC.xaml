@@ -5,8 +5,258 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.forms"
         mc:Ignorable="d"
-        Title="CXC" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        Title="CUENTAS POR COBRAR" Height="1000" Width="1508" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Blue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="ButtonBackground" Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="20">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="ButtonBackground"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="Red" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="ButtonBackground"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="Blue" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="CustomTextBoxStyle">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Background" Value="Yellow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Window.Resources>
+    <Border CornerRadius="30">
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="175"/>
+                <RowDefinition Height="321*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" x:Name="border_title" Background="Tomato" CornerRadius="30,30,0,0" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Grid HorizontalAlignment="Center">
+                    <Label Content="Cuentas Por Cobrar" FontSize="100" FontWeight="Bold"/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Background="White" CornerRadius="0,0,30,30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="77"/>
+                        <RowDefinition Height="347"/>
+                        <RowDefinition Height="310"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="269*"/>
+                                <ColumnDefinition Width="435*"/>
+                                <ColumnDefinition Width="509*"/>
+                                <ColumnDefinition Width="275*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="5">
+                                <Border CornerRadius="10" BorderBrush="Black" Background="#D9556D" Padding="10,1,10,1">
+                                    <TextBox x:Name="txtSelectClient" Style="{StaticResource CustomTextBoxStyle}" Text="Elije un cliente" FontSize="35" Background="Transparent" BorderBrush="Transparent"/>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="5">
+                                <Border CornerRadius="10" BorderBrush="Black" Background="#D9556D" Padding="10,1,10,1">
+                                    <TextBox Text="Nombres" FontSize="35" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Margin="5">
+                                <Border CornerRadius="10" BorderBrush="Black" Background="#D9556D" Padding="10,1,10,1">
+                                    <TextBox Text="Dirección" FontSize="35" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3" Margin="5">
+                                <Border CornerRadius="10" BorderBrush="Black" Background="#D9556D" Padding="10,1,10,1">
+                                    <TextBox Text="Teléfono" FontSize="35" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                        <Border x:Name="border_dg" Background="Black" BorderThickness="0.0" CornerRadius="20" BorderBrush="Black" Padding="10" HorizontalAlignment="Center">
+                            <Grid Background="#FF3D3D3F">
+                                <DataGrid x:Name="dgInvoice" AutoGenerateColumns="False" FontSize="20" FontFamily="Arial" 
+                                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" 
+                                          AlternatingRowBackground="#F6F6F6" GridLinesVisibility="None" Width="1463"
+                                          CanUserAddRows="False" IsReadOnly="True" Padding="10" BorderBrush="{x:Null}"
+                                          >
+                                    <DataGrid.Resources>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="Background" Value="#F0F0F0" />
+                                            <Setter Property="Foreground" Value="#333333" />
+                                            <Setter Property="BorderBrush" Value="#DADADA" />
+                                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                                        </Style>
+                                        <Style TargetType="{x:Type DataGridCell}">
+                                            <Setter Property="BorderBrush" Value="#DADADA" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                            <Setter Property="Padding" Value="5" />
+                                        </Style>
+                                        <Style TargetType="{x:Type DataGridCell}" x:Key="RightAlignedCell">
+                                            <Setter Property="HorizontalAlignment" Value="Right" />
+                                        </Style>
+                                        <Style TargetType="{x:Type DataGridCell}" x:Key="LeftAlignedCell">
+                                            <Setter Property="HorizontalAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="REG" Binding="{Binding reg}" Width="50">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="ABONO PARC" Binding="{Binding pass_parc}" Width="150">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="PF" Binding="{Binding pf}" Width="70">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Factura" Binding="{Binding invoice}" Width="100">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Neto" Binding="{Binding neto}" Width="110">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Tipo IPOC" Binding="{Binding type_ipo}" Width="100">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Abono" Binding="{Binding pass}" Width="110">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Saldo" Binding="{Binding balance}" Width="110">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Fecha" Binding="{Binding date}" Width="100">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Vence" Binding="{Binding expired}" Width="100">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Mora/dias" Binding="{Binding days_expired}" Width="100">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Total" Binding="{Binding total}" Width="110">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Header="Teléfono" Binding="{Binding phone}" Width="100">
+                                            <DataGridTextColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                            </DataGridTextColumn.CellStyle>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="12,0">
+                        <Border CornerRadius="20" Padding="10" HorizontalAlignment="Center" Width="1474">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="269*"/>
+                                    <ColumnDefinition Width="435*"/>
+                                    <ColumnDefinition Width="509*"/>
+                                    <ColumnDefinition Width="275*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Orientation="Vertical">
+                                    <Grid Height="288">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="151"/>
+                                            <RowDefinition Height="144"/>
+                                            <RowDefinition Height="439"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel>
+                                            <Border Grid.Row="1" Background="White" CornerRadius="0,0,30,30" Height="151">
+                                                <Grid>
+                                                    <StackPanel Orientation="Vertical" Grid.Row="0">
+                                                        <Grid Margin="10" Height="141">
+                                                            <StackPanel Grid.Column="0" Margin="5,5,5,0" Orientation="Vertical">
+                                                                <Label Content="Total" FontSize="40" HorizontalContentAlignment="Center"  Width="219" HorizontalAlignment="Left" Height="67" />
+                                                                <Border CornerRadius="10" BorderBrush="Black" Background="#D9556D" Padding="10,1,10,1" HorizontalAlignment="Left" Width="219" Margin="0,0,-185,0">
+                                                                    <TextBox  Style="{StaticResource CustomTextBoxStyle}" Text="Elije un cliente" FontSize="35" Background="Transparent" BorderBrush="Transparent"/>
+                                                                </Border>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Window>

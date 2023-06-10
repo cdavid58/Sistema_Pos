@@ -1,27 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Media.Effects;
+using WpfApp1.modals;
 
 namespace WpfApp1.forms
 {
-    /// <summary>
-    /// Lógica de interacción para CXC.xaml
-    /// </summary>
+
     public partial class CXC : Window
     {
+
+
+
         public CXC()
         {
             InitializeComponent();
+            txtSelectClient.Focus();
+            txtSelectClient.Clear();
+            SolidColorBrush cursorBrush = new SolidColorBrush(Colors.White);
+            DropShadowEffect shadowEffect = new DropShadowEffect();
+            shadowEffect.Color = Colors.Yellow;
+            shadowEffect.BlurRadius = 10;
+            border_dg.Effect = shadowEffect;
+            txtSelectClient.CaretBrush = cursorBrush;
+        }
+
+        private void TxtCustomer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                List_Client lc = new List_Client();
+                lc.ShowDialog();
+
+            }
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

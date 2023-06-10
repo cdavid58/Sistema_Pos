@@ -54,6 +54,7 @@ namespace WpfApp1.modals
                 DataGridRow row = sender as DataGridRow;
                 DataRowView dataRowView = row.Item as DataRowView;
                 var values = dataRowView.Row.ItemArray;
+                form_invoice.client_list.Clear();
                 var data = form_invoice.client_list;
                 data.Add("pk_client", values[0].ToString());
                 data.Add("documentI", values[1].ToString());

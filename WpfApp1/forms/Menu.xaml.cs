@@ -10,9 +10,6 @@ using WpfApp1.forms.Modules;
 
 namespace WpfApp1.forms
 {
-    /// <summary>
-    /// Lógica de interacción para Menu.xaml
-    /// </summary>
     public partial class Menu : Window
     {
         private Dictionary<string, int> permissions;
@@ -99,6 +96,16 @@ namespace WpfApp1.forms
                     users.Show();
                     Hide();
                     break;
+                case 8:
+                    CXC cxc = new CXC();
+                    cxc.Show();
+                    Hide();
+                    break;
+                case 9:
+                    CXP cxp = new CXP();
+                    cxp.Show();
+                    Hide();
+                    break;
             }
         }
 
@@ -144,6 +151,18 @@ namespace WpfApp1.forms
             {
                 Usuarios users = new Usuarios();
                 users.Show();
+                Hide();
+            }
+            else if (e.Key == Key.F8)
+            {
+                CXC cxc = new CXC();
+                cxc.Show();
+                Hide();
+            }
+            else if (e.Key == Key.F9)
+            {
+                CXP cxp = new CXP();
+                cxp.Show();
                 Hide();
             }
             else if(e.Key == Key.E)

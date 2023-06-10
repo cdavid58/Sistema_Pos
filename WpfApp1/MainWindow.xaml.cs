@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using WpfApp1.forms;
+using System.Diagnostics;
+using System;
 
 namespace WpfApp1
 {
@@ -13,6 +15,24 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            try
+            {
+                string laragonPath = @"C:/laragon/";
+                string mysqlCommand = $"/{laragonPath}bin/mysql/mysql-5.7.24-winx64/bin/mysqld.exe/ --defaults-file=/{laragonPath}bin/mysql/mysql-5.7.24-winx64/bin/my.ini/ --standalone";
+                ExecuteCommand(mysqlCommand);
+            }
+            catch (Exception) { }
+        }
+
+        static void ExecuteCommand(string command)
+        {
+            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c " + command);
+            processInfo.CreateNoWindow = true;
+            processInfo.UseShellExecute = false;
+
+            Process process = new Process();
+            process.StartInfo = processInfo;
+            process.Start();
         }
 
         private void Enter_Click(object sender, RoutedEventArgs e)

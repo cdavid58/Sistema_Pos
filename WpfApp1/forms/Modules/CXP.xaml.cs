@@ -1,27 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfApp1.modals;
 
 namespace WpfApp1.forms.Modules
 {
-    /// <summary>
-    /// Lógica de interacción para CXP.xaml
-    /// </summary>
     public partial class CXP : Window
     {
         public CXP()
         {
             InitializeComponent();
+        }
+
+        private void TxtCustomer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                List_Client lc = new List_Client();
+                lc.ShowDialog();
+            }
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

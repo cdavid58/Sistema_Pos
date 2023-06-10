@@ -191,7 +191,7 @@ namespace WpfApp1.designs
                             GarbageCollector(details_invoice);
                         }
                     }
-
+                    i.Create_Wallet(int.Parse(txtTotal.Text), DaysExpire, int.Parse(txtNumberInvoice.Text));
                     GarbageCollector(di);
                     GarbageCollector(hi);
                     GarbageCollector(i);

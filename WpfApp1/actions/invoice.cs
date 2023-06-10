@@ -13,7 +13,7 @@ namespace WpfApp1.actions
         private Invoice order;
         public bool exists_client = false;
 
-        public void Create_Wallet_Shopping(int amount, int duration,int invoice_id)
+        public void Create_Wallet(int amount, int duration,int invoice_id)
         {
             string query = $"CALL Create_Wallet({amount},{duration},{invoice_id})";
             MySqlTransaction transaction = c.Conect().BeginTransaction();
@@ -26,7 +26,7 @@ namespace WpfApp1.actions
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("ERROR "+ex.Message);
                 transaction.Rollback();
             }
             c.Conect().Close();

@@ -4,9 +4,407 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.forms.Modules"
+        xmlns:local1="clr-namespace:WpfApp1.forms"
         mc:Ignorable="d"
-        Title="CXP" Height="450" Width="800">
-    <Grid>
-        
+        Background="#8D8D8D"
+        Title="CUENTAS POR PAGAR" Height="1236" Width="1937" WindowState="Maximized">
+    <Window.Resources>
+        <local1:HeightToFontSizeConverter x:Key="HeightToFontSizeConverter"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Blue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="ButtonBackground" Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="20">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="ButtonBackground"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="Red" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="ButtonBackground"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="Blue" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="106"/>
+            <RowDefinition Height="362"/>
+            <RowDefinition Height="104"/>
+            <RowDefinition Height="337"/>
+            <RowDefinition Height="92"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="229,2,231,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Column="0" Height="95" VerticalAlignment="Center" Background="#408080" Margin="0,5,10,5" Width="1459">
+                <Grid Width="1457" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Grid>
+                            <Grid Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" Width="145" Height="79" VerticalAlignment="Top">
+                                        <Label Content="Cliente" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox x:Name="txtCustomer" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0" KeyDown="TxtCustomer_KeyDown"
+                                         FontSize="{Binding ElementName=txtCustomer, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" Height="30"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Width="200">
+                                        <Label Content="Nombres" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox x:Name="txtNames" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtCustomer}" IsEnabled="False" Height="30" HorizontalAlignment="Left" Width="180"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Width="200">
+                                        <Label Content="Dirección" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox x:Name="txtAddress" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtCustomer}" IsEnabled="False" Height="30" HorizontalAlignment="Left" Width="180"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Width="200">
+                                        <Label Content="Teléfono" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox x:Name="txtPhone" TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtCustomer}" IsEnabled="False" Height="30" HorizontalAlignment="Left" Width="180"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal"  Grid.Column="0" Margin="0,10" HorizontalAlignment="Center" Width="auto" Height="auto">
+                <StackPanel Orientation="Horizontal" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,3" HorizontalAlignment="Left" Width="auto">
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.001"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
+                    <Grid Width="1463">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <DataGrid x:Name="dgInvoice" AutoGenerateColumns="False" FontSize="20" FontFamily="Arial" 
+                                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" 
+                                          AlternatingRowBackground="#F6F6F6" GridLinesVisibility="None" Margin="0,0,0,-350" Width="1463"
+                                          CanUserAddRows="False" IsReadOnly="True">
+                                <DataGrid.Resources>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Background" Value="#F0F0F0" />
+                                        <Setter Property="Foreground" Value="#333333" />
+                                        <Setter Property="BorderBrush" Value="#DADADA" />
+                                        <Setter Property="BorderThickness" Value="0,0,0,1" />
+                                    </Style>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="BorderBrush" Value="#DADADA" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="5" />
+                                    </Style>
+                                    <Style TargetType="{x:Type DataGridCell}" x:Key="RightAlignedCell">
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                    </Style>
+                                    <Style TargetType="{x:Type DataGridCell}" x:Key="LeftAlignedCell">
+                                        <Setter Property="HorizontalAlignment" Value="Left" />
+                                    </Style>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="REG" Binding="{Binding reg}" Width="50">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="ABONO PARC" Binding="{Binding pass_parc}" Width="150">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="PF" Binding="{Binding pf}" Width="70">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Factura" Binding="{Binding invoice}" Width="100">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Neto" Binding="{Binding neto}" Width="110">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Tipo IPOC" Binding="{Binding type_ipo}" Width="100">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Abono" Binding="{Binding pass}" Width="110">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Saldo" Binding="{Binding balance}" Width="110">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Fecha" Binding="{Binding date}" Width="100">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Vence" Binding="{Binding expired}" Width="100">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Mora/dias" Binding="{Binding days_expired}" Width="100">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Total" Binding="{Binding total}" Width="110">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Teléfono" Binding="{Binding phone}" Width="100">
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="232,2,235,0" Height="97" VerticalAlignment="Top" Background="#408080" HorizontalAlignment="Center" Grid.RowSpan="1" Width="1462">
+            <StackPanel Orientation="Horizontal"  Grid.Column="0" Height="97" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" Width="1462" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" Width="272" Height="79" VerticalAlignment="Top" Margin="80,0,50,0">
+                        <Label Content="TOTAL" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                        <TextBox Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                             BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                             FontSize="{Binding ElementName=txtCustomer, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="40"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Width="272" Margin="0,0,50,0">
+                        <Label Content="TOTAL ABONO" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,10,10" HorizontalContentAlignment="Right"
+                                             BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                             FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" IsEnabled="False" Height="40"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Width="272" Margin="0,0,50,0">
+                        <Label Content="TOTAL SALDO" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,10,10" HorizontalContentAlignment="Right"
+                                             BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                             FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtItems}" IsEnabled="False" Height="40"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Width="272" Margin="50,0,0,0">
+                        <Label Content="Existencia" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,10,10" HorizontalContentAlignment="Right"
+                                             BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                             FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtCustomer}" IsEnabled="False" Height="40"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="232,0,231,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="475*"/>
+                <ColumnDefinition Width="991*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <DataGrid x:Name="dgResult" AutoGenerateColumns="False" FontSize="20" FontFamily="Arial" 
+                                          CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" 
+                                          AlternatingRowBackground="#F6F6F6" GridLinesVisibility="None" Margin="0,0,0,0"
+                                          CanUserAddRows="False" IsReadOnly="True" Height="319" Width="475" VerticalAlignment="Top">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="#F0F0F0" />
+                            <Setter Property="Foreground" Value="#333333" />
+                            <Setter Property="BorderBrush" Value="#DADADA" />
+                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="BorderBrush" Value="#DADADA" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="Padding" Value="5" />
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}" x:Key="RightAlignedCell">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                        <Style TargetType="{x:Type DataGridCell}" x:Key="LeftAlignedCell">
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="REG" Binding="{Binding reg}" Width="150">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="ABONO PARC" Binding="{Binding pass_parc}" Width="150">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource LeftAlignedCell}" />
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="PF" Binding="{Binding pf}" Width="150">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource RightAlignedCell}" />
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Background="#408080" Margin="123,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="43"/>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="162"/>
+                        <RowDefinition Height="664"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="0,0,0,2">
+                        <Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="50*"/>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                            <StackPanel Grid.Column="0">
+                                <Label Content="Forma de Pago" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                                <Label Content="(-) Este valor" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Right"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Height="186" VerticalAlignment="Top" Grid.RowSpan="2">
+                        <Grid>
+                            <Grid Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" Width="145" Height="79" VerticalAlignment="Top">
+                                        <Label Content="N° F. Pago" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox Text="0" TextWrapping="Wrap" ToolTip="Total de items agregados a la factura" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ElementName=txtCustomer, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="30"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Width="200">
+                                        <Label Content="Forma de pago" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtCustomer}" IsEnabled="False" Height="30" HorizontalAlignment="Left" Width="180"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Width="200">
+                                        <Label Content="Fecha" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtCustomer}" IsEnabled="False" Height="30" HorizontalAlignment="Left" Width="180"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Width="200">
+                                        <Label Content="Teléfono" HorizontalContentAlignment="Center" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                        <TextBox TextWrapping="Wrap" ToolTip="Total de existencia del producto en el inventario" Margin="10,2,0,10" HorizontalContentAlignment="Right"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ActualHeight, Converter={StaticResource HeightToFontSizeConverter}, ElementName=txtCustomer}" IsEnabled="False" Height="30" HorizontalAlignment="Left" Width="180"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Height="152" VerticalAlignment="Top">
+                        <Grid Width="740" Margin="0,0,0,-5">
+                            <StackPanel Orientation="Horizontal" Width="740">
+                                <StackPanel Orientation="Vertical" Width="734">
+                                    <Label Content="Observaciones" HorizontalContentAlignment="Left" FontSize="20" Foreground="White" FontWeight="Bold"/>
+                                    <TextBox TextWrapping="Wrap" ToolTip="Observaciones" Margin="10,2,0,10" HorizontalContentAlignment="Left"
+                                         BorderBrush="Gray" BorderThickness="2" Padding="5,0"
+                                         FontSize="{Binding ElementName=txtCustomer, Path=ActualHeight, Converter={StaticResource HeightToFontSizeConverter}}" IsEnabled="False" Height="115"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3 " HorizontalAlignment="Center" Orientation="Horizontal" Height="46" VerticalAlignment="Top">
+                        <Grid Width="621" HorizontalAlignment="Center" Margin="-1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="157"/>
+                                <ColumnDefinition Width="157"/>
+                                <ColumnDefinition Width="154"/>
+                                <ColumnDefinition Width="153"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Center">
+                                <Button Content="Grabar" FontSize="20" Width="148" Style="{StaticResource RoundedButtonStyle}"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                                <Button Content="Imprimir estado" FontSize="20" Width="150" Style="{StaticResource RoundedButtonStyle}"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center">
+                                <Button Content="Arreglar Abono" FontSize="20" Width="148" Style="{StaticResource RoundedButtonStyle}"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Center">
+                                <Button Content="Copia recibo" FontSize="20" Width="148" Style="{StaticResource RoundedButtonStyle}"></Button>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
